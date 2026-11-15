@@ -3,7 +3,7 @@
 
   const page = document.body.dataset.page || 'today';
   const demo = window.JOB_WATCHER_DEMO || { status: {}, history: [] };
-  const state = { status: null, history: [], scope: 'role', filters: { search: '', employer: '', location: '', days: '' }, sort: 'dallas', shortlistOnly: false };
+  const state = { status: null, history: [], scope: 'role', filters: { search: '', employer: '', location: '', experience: '', days: '' }, sort: 'dallas', shortlistOnly: false };
   const SHORTLIST_KEY = 'job-watcher-shortlist-v1';
 
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -36,6 +36,30 @@
     if (/commercial bank|business bank|relationship manager|treasury/.test(text)) return 'Banking';
     if (/investment|portfolio|asset management|capital markets/.test(text)) return 'Investments';
     return 'Finance & risk';
+  };
+  const stateAbbreviations = {
+    Alabama: 'AL', Alaska: 'AK', Arizona: 'AZ', Arkansas: 'AR', California: 'CA', Colorado: 'CO', Connecticut: 'CT', Delaware: 'DE', Florida: 'FL', Georgia: 'GA', Hawaii: 'HI', Idaho: 'ID', Illinois: 'IL', Indiana: 'IN', Iowa: 'IA', Kansas: 'KS', Kentucky: 'KY', Louisiana: 'LA', Maine: 'ME', Maryland: 'MD', Massachusetts: 'MA', Michigan: 'MI', Minnesota: 'MN', Mississippi: 'MS', Missouri: 'MO', Montana: 'MT', Nebraska: 'NE', Nevada: 'NV', 'New Hampshire': 'NH', 'New Jersey': 'NJ', 'New Mexico': 'NM', 'New York': 'NY', 'North Carolina': 'NC', 'North Dakota': 'ND', Ohio: 'OH', Oklahoma: 'OK', Oregon: 'OR', Pennsylvania: 'PA', 'Rhode Island': 'RI', 'South Carolina': 'SC', 'South Dakota': 'SD', Tennessee: 'TN', Texas: 'TX', Utah: 'UT', Vermont: 'VT', Virginia: 'VA', Washington: 'WA', 'West Virginia': 'WV', Wisconsin: 'WI', Wyoming: 'WY'
+  };
+  const normalizeLocation = value => {
+    let location = String(value || '').replace(/\s+/g, ' ').trim();
+    if (!location) return '';
+    if (/^\d+\s+locations?$/i.test(location)) return 'Multiple locations';
+    location = location.replace(/,\s*(?:United States(?: of America)?|USA|US)$/i, '');
+    Object.entries(stateAbbreviations).forEach(([name, abbreviation]) => {
+      location = location.replace(new RegExp(`,\\s*${name}(?=,|$|\\s*-)`, 'i'), `, ${abbreviation}`);
+    });
+    const parts = location.split(',').map(part => part.trim()).filter(Boolean);
+    if (parts.length > 1 && parts[0].toLowerCase() === parts[1].toLowerCase()) parts.splice(1, 1);
+    return parts.join(', ');
+  };
+  const displayLocation = row => normalizeLocation(row.location) || 'Location not listed';
+  const experienceLevel = row => {
+    const text = `${row.title || ''} ${row.department || ''}`.toLowerCase();
+    if (/intern|internship|co-?op|student|summer analyst|early career|new grad|graduate program|analyst program/.test(text)) return 'Internship / student';
+    if (/senior|\bsr\.?\b|lead|manager|director|vice president|\bvp\b|principal|head of|executive director|managing director/.test(text)) return 'Senior / leadership';
+    if (/entry|junior|\banalyst\b|\bassociate\b|assistant|coordinator|specialist|representative|trainee|apprentice/.test(text)) return 'Entry level';
+    if (/relationship|advisor|adviser|banker|officer|consultant|planner|portfolio|underwriter|loan|credit|treasury|client service/.test(text)) return 'Mid-level / experienced';
+    return 'Not specified';
   };
 
   function parseCSV(text) {
@@ -90,7 +114,7 @@
   }
 
   function miniPosting(row, kind) {
-    return `<a class="posting-mini ${kind}" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer"><div><div class="posting-mini-title">${esc(row.title)}</div><div class="posting-mini-meta">${esc(row.employer)} · ${esc(row.location)}</div></div><span class="posting-mini-date">${kind === 'new' ? formatShortDate(row.first_seen) : formatShortDate(row.removed_date)}</span></a>`;
+    return `<a class="posting-mini ${kind}" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer"><div><div class="posting-mini-title">${esc(row.title)}</div><div class="posting-mini-meta">${esc(row.employer)} · ${esc(displayLocation(row))}</div></div><span class="posting-mini-date">${kind === 'new' ? formatShortDate(row.first_seen) : formatShortDate(row.removed_date)}</span></a>`;
   }
 
   function renderToday() {
@@ -116,21 +140,27 @@
 
   function populateSelect(selector, values, label) {
     const select = $(selector); const current = select.value;
-    select.innerHTML = `<option value="">${label}</option>` + values.sort((a, b) => a.localeCompare(b)).map(value => `<option value="${esc(value)}">${esc(value)}</option>`).join('');
-    select.value = values.includes(current) ? current : '';
+    const cleaned = [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    select.innerHTML = `<option value="">${label}</option>` + cleaned.map(value => `<option value="${esc(value)}">${esc(value)}</option>`).join('');
+    const selected = cleaned.includes(current) ? current : '';
+    select.value = selected;
+    return selected;
   }
 
   function renderBrowse() {
     if (!$('[data-role-list]')) return;
     const open = state.history.filter(row => row.status === 'open');
-    populateSelect('[data-filter="employer"]', [...new Set(open.map(row => row.employer))], 'All employers');
-    populateSelect('[data-filter="location"]', [...new Set(open.map(row => row.location))], 'All locations');
-    let rows = open.filter(row => state.scope === 'all' || row.in_role === 'true');
+    const scopeRows = open.filter(row => state.scope === 'all' || row.in_role === 'true');
+    state.filters.employer = populateSelect('[data-filter="employer"]', scopeRows.map(row => row.employer), 'All employers');
+    state.filters.location = populateSelect('[data-filter="location"]', scopeRows.map(row => normalizeLocation(row.location)), 'All locations');
+    state.filters.experience = populateSelect('[data-filter="experience"]', scopeRows.map(row => experienceLevel(row)), 'All levels');
+    let rows = scopeRows;
     if (state.shortlistOnly) rows = rows.filter(row => isSaved(row.posting_id));
     const search = state.filters.search;
     rows = rows.filter(row => !search || `${row.title} ${row.employer} ${row.department}`.toLowerCase().includes(search));
     rows = rows.filter(row => !state.filters.employer || row.employer === state.filters.employer);
-    rows = rows.filter(row => !state.filters.location || row.location === state.filters.location);
+    rows = rows.filter(row => !state.filters.location || normalizeLocation(row.location) === state.filters.location);
+    rows = rows.filter(row => !state.filters.experience || experienceLevel(row) === state.filters.experience);
     rows = rows.filter(row => !state.filters.days || (daysBetween(row.first_seen, latestRunDate()) ?? 999) <= Number(state.filters.days));
     rows.sort((a, b) => state.sort === 'dallas' ? Number(isDallasArea(b.location)) - Number(isDallasArea(a.location)) || b.first_seen.localeCompare(a.first_seen) : state.sort === 'employer' ? a.employer.localeCompare(b.employer) : state.sort === 'oldest' ? a.first_seen.localeCompare(b.first_seen) : b.first_seen.localeCompare(a.first_seen));
     $('[data-result-count]').textContent = rows.length;
@@ -142,14 +172,14 @@
   }
 
   function roleCard(row, index) {
-    return `<article class="role-card"><span class="role-index">${String(index + 1).padStart(2, '0')}</span><div><div class="role-title">${esc(row.title)}</div><div class="role-employer">${esc(row.employer)}</div><span class="role-track">${esc(roleTrack(row))}</span></div><div class="role-location"><span>Location${isDallasArea(row.location) ? ' · DFW' : ''}</span>${esc(row.location || 'Not listed')}</div><div class="role-department"><span>Team</span>${esc(row.department || '—')}</div><div class="role-age"><strong>${esc(relativeAge(row))}</strong><span>${formatShortDate(row.first_seen)}</span></div><div class="role-actions"><a class="apply-link" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open application">↗</a><button class="star-button ${isSaved(row.posting_id) ? 'saved' : ''}" data-star="${esc(row.posting_id)}" aria-label="${isSaved(row.posting_id) ? 'Remove from shortlist' : 'Save to shortlist'}">★</button></div></article>`;
+    return `<article class="role-card"><span class="role-index">${String(index + 1).padStart(2, '0')}</span><div><div class="role-title">${esc(row.title)}</div><div class="role-employer">${esc(row.employer)}</div><span class="role-track">${esc(roleTrack(row))}</span><span class="role-level">${esc(experienceLevel(row))}</span></div><div class="role-location"><span>Location${isDallasArea(row.location) ? ' · DFW' : ''}</span>${esc(displayLocation(row))}</div><div class="role-department"><span>Team</span>${esc(row.department || '—')}</div><div class="role-age"><strong>${esc(relativeAge(row))}</strong><span>${formatShortDate(row.first_seen)}</span></div><div class="role-actions"><a class="apply-link" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open application">↗</a><button class="star-button ${isSaved(row.posting_id) ? 'saved' : ''}" data-star="${esc(row.posting_id)}" aria-label="${isSaved(row.posting_id) ? 'Remove from shortlist' : 'Save to shortlist'}">★</button></div></article>`;
   }
 
   function toggleStar(id) { const values = getShortlist(); const next = values.includes(id) ? values.filter(value => value !== id) : [...values, id]; setShortlist(next); renderBrowse(); }
   function renderShortlist() {
     const values = getShortlist(); $$('[data-shortlist-count]').forEach(element => element.textContent = values.length);
     const rows = state.history.filter(row => values.includes(row.posting_id) && row.status === 'open');
-    $('[data-shortlist-preview]').innerHTML = rows.length ? rows.slice(0, 4).map(row => `<a class="short-role" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer"><div class="short-role-title">${esc(row.title)}</div><div class="short-role-meta">${esc(row.employer)} · ${esc(row.location)}</div></a>`).join('') : '<div class="shortlist-empty">Your saved roles will appear here.</div>';
+    $('[data-shortlist-preview]').innerHTML = rows.length ? rows.slice(0, 4).map(row => `<a class="short-role" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer"><div class="short-role-title">${esc(row.title)}</div><div class="short-role-meta">${esc(row.employer)} · ${esc(displayLocation(row))}</div></a>`).join('') : '<div class="shortlist-empty">Your saved roles will appear here.</div>';
   }
 
   function groupCount(rows, key) {
@@ -176,7 +206,7 @@
     const dates = [...new Set(history.flatMap(row => [row.first_seen, row.removed_date]).filter(Boolean))].sort();
     const newByDate = dates.reduce((result, date) => { result[date.slice(5)] = newRows.filter(row => row.first_seen === date).length; return result; }, {});
     const removedByDate = dates.reduce((result, date) => { result[date.slice(5)] = removedRows.filter(row => row.removed_date === date).length; return result; }, {});
-    const employerCounts = groupCount(open, 'employer'); const locationCounts = groupCount(open, 'location');
+    const employerCounts = groupCount(open, 'employer'); const locationCounts = groupCount(open.map(row => ({ ...row, location: displayLocation(row) })), 'location');
     $('[data-chart="new"]').innerHTML = barChart(newByDate); $('[data-chart="removed"]').innerHTML = barChart(removedByDate, { height: 150 }); $('[data-chart="employers"]').innerHTML = horizontalBars(employerCounts); $('[data-chart="locations"]').innerHTML = horizontalBars(locationCounts); $('[data-chart="days"]').innerHTML = donutChart(knownDurations.length ? Math.min(1, median(knownDurations) / 14) : 0, 'Median days open');
     $('[data-insight="new-total"]').textContent = newRows.length; $('[data-insight="removed-total"]').textContent = removedRows.length; $('[data-insight="top-employer"]').textContent = Object.entries(employerCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '—'; $('[data-insight="median-days"]').textContent = knownDurations.length ? `${Math.round(median(knownDurations))}d` : '—'; $('[data-insight="seven-day"]').textContent = qualified.length ? `${Math.round(withinSeven.length / qualified.length * 100)}%` : '—'; $('[data-insight="seven-count"]').textContent = withinSeven.length; $('[data-insight="seven-total"]').textContent = qualified.length; $('[data-insight="top-location"]').textContent = Object.entries(locationCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '—';
   }

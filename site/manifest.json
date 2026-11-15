@@ -1,0 +1,10 @@
+{
+  "name": "Job Watcher",
+  "short_name": "Job Watcher",
+  "description": "A daily briefing for finance and business opportunities.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "icons": []
+}

@@ -1,0 +1,23 @@
+posting_id,source,source_id,employer,title,location,department,posted_date,url,in_role,first_run,first_seen,last_seen,status,removed_date
+community-banking:1001,Community banking,1001,First Horizon,Commercial Banking Associate,"Memphis, TN",Commercial Banking,2026-11-14,https://www.firsthorizon.com/about/careers,true,false,2026-11-14,2026-11-15,open,
+community-banking:1002,Community banking,1002,Regions Bank,Relationship Manager - Small Business,"Birmingham, AL",Business Banking,2026-11-15,https://careers.regions.com/,true,false,2026-11-15,2026-11-15,open,
+community-banking:1003,Community banking,1003,Truist,Community Development Banker,"Atlanta, GA",Community Banking,2026-11-13,https://careers.truist.com/,true,false,2026-11-13,2026-11-15,open,
+community-banking:1004,Community banking,1004,First Horizon,Credit Analyst - Commercial Banking,"Nashville, TN",Credit,2026-11-11,https://www.firsthorizon.com/about/careers,true,false,2026-11-11,2026-11-15,open,
+community-banking:1005,Community banking,1005,Regions Bank,Branch Operations Manager,"Little Rock, AR",Retail Banking,2026-11-10,https://careers.regions.com/,false,true,2026-11-10,2026-11-12,removed,2026-11-12
+commercial-lending:2001,Commercial lending,2001,U.S. Bank,Commercial Credit Underwriter,"Minneapolis, MN",Credit,2026-11-15,https://www.usbank.com/about-us-bank/careers.html,true,false,2026-11-15,2026-11-15,open,
+commercial-lending:2002,Commercial lending,2002,Fifth Third Bank,Business Banking Relationship Associate,"Cincinnati, OH",Commercial Banking,2026-11-12,https://www.53.com/content/fifth-third/en/careers.html,true,false,2026-11-12,2026-11-15,open,
+commercial-lending:2003,Commercial lending,2003,PNC,Portfolio Manager - Commercial Real Estate,"Pittsburgh, PA",Real Estate Finance,2026-11-10,https://careers.pnc.com/global/en,true,true,2026-11-10,2026-11-15,open,
+commercial-lending:2004,Commercial lending,2004,Hancock Whitney,Loan Documentation Specialist,"Gulfport, MS",Operations,2026-11-10,https://careers.hancockwhitney.com/,false,true,2026-11-10,2026-11-13,removed,2026-11-13
+wealth-planning:3001,Wealth planning,3001,Charles Schwab,Financial Consultant Academy,"Dallas, TX",Investor Services,2026-11-14,https://www.schwabjobs.com/,true,false,2026-11-14,2026-11-15,open,
+wealth-planning:3002,Wealth planning,3002,Edward Jones,Branch Office Administrator,"St. Louis, MO",Branch Support,2026-11-12,https://careers.edwardjones.com/,false,false,2026-11-12,2026-11-15,open,
+wealth-planning:3003,Wealth planning,3003,Fidelity Investments,Planning Consultant,"Westlake, TX",Personal Investing,2026-11-11,https://jobs.fidelity.com/,true,false,2026-11-11,2026-11-15,open,
+wealth-planning:3004,Wealth planning,3004,Vanguard,Client Relationship Associate,"Charlotte, NC",Advice,2026-11-10,https://www.vanguardjobs.com/,true,true,2026-11-10,2026-11-15,open,
+real-estate-finance:4001,Real estate finance,4001,CBRE,Real Estate Financial Analyst,"Chicago, IL",Advisory,2026-11-15,https://careers.cbre.com/,true,false,2026-11-15,2026-11-15,open,
+real-estate-finance:4002,Real estate finance,4002,JLL,Affordable Housing Finance Associate,"Washington, DC",Capital Markets,2026-11-12,https://www.jll.com/en/careers,true,false,2026-11-12,2026-11-15,open,
+real-estate-finance:4003,Real estate finance,4003,Cushman & Wakefield,Property Management Coordinator,"Orlando, FL",Property Management,2026-11-10,https://www.cushmanwakefield.com/en/careers,false,true,2026-11-10,2026-11-15,open,
+mission-driven-finance:5001,Mission-driven finance,5001,Hope Credit Union,Community Development Loan Officer,"Jackson, MS",Lending,2026-11-14,https://www.hopecu.org/careers/,true,false,2026-11-14,2026-11-15,open,
+mission-driven-finance:5002,Mission-driven finance,5002,Local Initiatives Support Corporation,Program Finance Associate,"New York, NY",Community Investment,2026-11-10,https://www.lisc.org/about/careers/,true,true,2026-11-10,2026-11-15,open,
+financial-analysis:6001,Financial analysis,6001,Ally,Financial Analyst - Corporate Planning,"Charlotte, NC",Finance,2026-11-13,https://www.ally.com/careers/,true,false,2026-11-13,2026-11-14,removed,2026-11-14
+financial-analysis:6002,Financial analysis,6002,Capital One,Risk Analyst,"McLean, VA",Enterprise Risk,2026-11-12,https://www.capitalonecareers.com/,true,false,2026-11-12,2026-11-15,open,
+financial-analysis:6003,Financial analysis,6003,Fannie Mae,Financial Analyst - Multifamily,"Reston, VA",Multifamily,2026-11-11,https://careers.fanniemae.com/,true,false,2026-11-11,2026-11-15,open,
+financial-analysis:6004,Financial analysis,6004,Fannie Mae,Financial Analyst - Multifamily,"Reston, VA",Multifamily,2026-11-10,https://careers.fanniemae.com/,true,true,2026-11-10,2026-11-15,open,

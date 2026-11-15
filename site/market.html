@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>Job Watcher — Market</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="market">
+  <div class="noise"></div>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="Job Watcher home"><span class="brand-mark"><span></span><span></span><span></span></span><span>Job <em>Watcher</em></span></a>
+    <nav class="main-nav" aria-label="Primary navigation"><a href="index.html">Today</a><a href="browse.html">Browse <span class="nav-count" data-open-count>18</span></a><a class="active" href="market.html">Market</a></nav>
+    <div class="header-meta"><span class="live-dot"></span><span data-run-label>Updating daily</span></div>
+  </header>
+
+  <main class="shell page-space">
+    <section class="page-intro market-intro"><div><p class="eyebrow"><span class="eyebrow-line"></span>The longer read</p><h1>Read the market,<br><span>not just the listing.</span></h1></div><p class="page-intro-copy">Six quiet signals from the history your watcher is building. Each number is calculated in the browser from the raw history file.</p></section>
+    <section class="market-note"><span class="market-note-icon">↗</span><div><strong data-market-window>Nov 10–15, 2026</strong><span>Current history window</span></div><div class="market-note-divider"></div><div><strong data-market-open>18</strong><span>Open on the latest run</span></div><div class="market-note-divider"></div><div><strong data-market-employers>15</strong><span>Employers represented</span></div></section>
+
+    <section class="insight-grid">
+      <article class="insight-card insight-wide"><div class="insight-copy"><p class="eyebrow">01 / Momentum</p><h2>Fresh roles arrive in waves.</h2><p>New postings are not evenly distributed. The latest window shows where the board is moving, with your finance-track roles highlighted in mint.</p><div class="insight-stat"><strong data-insight="new-total">0</strong><span>new roles tracked</span></div></div><div class="chart chart-bar" data-chart="new"></div></article>
+      <article class="insight-card"><p class="eyebrow">02 / Turnover</p><h2>Removed roles tell the other half of the story.</h2><div class="chart chart-bar chart-short" data-chart="removed"></div><div class="insight-caption"><strong data-insight="removed-total">0</strong><span>removed postings in the window</span></div></article>
+      <article class="insight-card"><p class="eyebrow">03 / Employers</p><h2>The open board is concentrated.</h2><div class="chart chart-bars-horizontal" data-chart="employers"></div><div class="insight-caption"><strong data-insight="top-employer">—</strong><span>leads the open board</span></div></article>
+      <article class="insight-card insight-wide"><div class="insight-copy"><p class="eyebrow">04 / Pace</p><h2>Most roles do not stay still for long.</h2><p>For postings with a known start date, days open measures the time between first sighting and removal. A growing median can signal a slower market—or more selective hiring.</p><div class="insight-stat"><strong data-insight="median-days">—</strong><span>median days open</span></div></div><div class="chart chart-donut" data-chart="days"></div></article>
+      <article class="insight-card"><p class="eyebrow">05 / Seven-day test</p><h2>How quickly does the board turn?</h2><div class="big-percent" data-insight="seven-day">—</div><p class="chart-explanation">Share of known-start postings removed within seven days of first being seen.</p><div class="mini-rule"><span data-insight="seven-count">0</span> of <span data-insight="seven-total">0</span> qualifying roles</div></article>
+      <article class="insight-card"><p class="eyebrow">06 / Geography</p><h2>Where the open roles cluster.</h2><div class="chart chart-bars-horizontal" data-chart="locations"></div><div class="insight-caption"><strong data-insight="top-location">—</strong><span>most represented location</span></div></article>
+    </section>
+  </main>
+  <footer class="site-footer shell"><span>JOB WATCHER</span><span>Patterns become useful with time.</span><span data-footer-date>Updated daily · UTC</span></footer>
+  <script src="demo-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

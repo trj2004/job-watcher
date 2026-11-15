@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>Job Watcher — Today</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="today">
+  <div class="noise"></div>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="Job Watcher home">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span>Job <em>Watcher</em></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a class="active" href="index.html">Today</a>
+      <a href="browse.html">Browse <span class="nav-count" data-open-count>18</span></a>
+      <a href="market.html">Market</a>
+    </nav>
+    <div class="header-meta"><span class="live-dot"></span><span data-run-label>Updating daily</span></div>
+  </header>
+
+  <main class="shell page-space">
+    <section class="hero hero-today">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span>Daily intelligence brief</p>
+        <h1>Your next move,<br><span>before it moves.</span></h1>
+        <p class="hero-text">A focused read on finance, lending, wealth, and real-estate opportunities worth a closer look.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="browse.html">Explore open roles <span>↗</span></a>
+          <span class="last-run"><span class="pulse"></span> Last run <strong data-last-run>Nov 15, 2026 · 7:25 AM UTC</strong></span>
+        </div>
+      </div>
+      <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit-ring orbit-ring-one"></div>
+        <div class="orbit-ring orbit-ring-two"></div>
+        <div class="orbit-ring orbit-ring-three"></div>
+        <div class="orbit-core"><span>JW</span><small>WATCHING</small></div>
+        <span class="orbit-label label-one">finance</span>
+        <span class="orbit-label label-two">people</span>
+        <span class="orbit-label label-three">possibility</span>
+      </div>
+    </section>
+
+    <section class="demo-note" data-demo-note>
+      <span class="note-icon">✦</span>
+      <span><strong>Design preview.</strong> This first view uses a curated seed while the daily source pipeline is being connected.</span>
+      <a href="browse.html">See the watchlist <span>→</span></a>
+    </section>
+
+    <section class="metric-grid" aria-label="Latest job watcher metrics">
+      <article class="metric-card metric-card-accent">
+        <div class="metric-top"><span class="metric-label">Open opportunities</span><span class="metric-icon">↗</span></div>
+        <strong class="metric-value" data-metric="open">18</strong>
+        <span class="metric-foot">Across the current watchlist</span>
+      </article>
+      <article class="metric-card">
+        <div class="metric-top"><span class="metric-label">New today</span><span class="metric-icon metric-icon-green">+</span></div>
+        <strong class="metric-value" data-metric="new_today">3</strong>
+        <span class="metric-foot positive">Fresh since yesterday</span>
+      </article>
+      <article class="metric-card">
+        <div class="metric-top"><span class="metric-label">Removed today</span><span class="metric-icon metric-icon-rose">−</span></div>
+        <strong class="metric-value" data-metric="removed_today">2</strong>
+        <span class="metric-foot">No longer on the board</span>
+      </article>
+      <article class="metric-card">
+        <div class="metric-top"><span class="metric-label">Successful days</span><span class="metric-icon">◷</span></div>
+        <strong class="metric-value" data-metric="days_with_success">6</strong>
+        <span class="metric-foot">Daily history collected</span>
+      </article>
+    </section>
+
+    <section class="content-grid today-grid">
+      <div class="panel panel-changes">
+        <div class="section-heading"><div><p class="eyebrow">The signal</p><h2>What changed today</h2></div><a class="text-link" href="browse.html">View all <span>→</span></a></div>
+        <div class="change-columns">
+          <div class="change-column">
+            <div class="change-heading"><span class="change-dot dot-new"></span><span>New on the board</span><strong data-new-count>3</strong></div>
+            <div class="posting-stack" data-new-list></div>
+          </div>
+          <div class="change-column">
+            <div class="change-heading"><span class="change-dot dot-removed"></span><span>Recently removed</span><strong data-removed-count>2</strong></div>
+            <div class="posting-stack" data-removed-list></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel panel-health">
+        <div class="section-heading"><div><p class="eyebrow">Source pulse</p><h2>Board health</h2></div><span class="health-score" data-health-score>83%</span></div>
+        <p class="panel-intro">Every source gets its own check. One missed board should never hide the rest of the market.</p>
+        <div class="health-list" data-source-list></div>
+        <a class="quiet-button" href="market.html">Open market report <span>↗</span></a>
+      </aside>
+    </section>
+
+    <section class="quote-panel">
+      <div class="quote-mark">“</div>
+      <p>Keep the search broad enough to notice a direction,<br>and specific enough to act on one.</p>
+      <span>YOUR WATCHLIST · 01</span>
+    </section>
+  </main>
+
+  <footer class="site-footer shell"><span>JOB WATCHER</span><span>Built for a better next move.</span><span data-footer-date>Updated daily · UTC</span></footer>
+  <script src="demo-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

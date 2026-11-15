@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Plaid",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/plaid/jobs?content=true",
+    "employer": "Plaid",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Brex",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/brex/jobs?content=true",
+    "employer": "Brex",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Ramp",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/ramp/jobs?content=true",
+    "employer": "Ramp",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Chime",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/chime/jobs?content=true",
+    "employer": "Chime",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Robinhood",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/robinhood/jobs?content=true",
+    "employer": "Robinhood",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Coinbase",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs?content=true",
+    "employer": "Coinbase",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Betterment",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/betterment/jobs?content=true",
+    "employer": "Betterment",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Wealthfront",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/wealthfront/jobs?content=true",
+    "employer": "Wealthfront",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Carta",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/carta/jobs?content=true",
+    "employer": "Carta",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Mercury",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/mercury/jobs?content=true",
+    "employer": "Mercury",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "SoFi",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/sofi/jobs?content=true",
+    "employer": "SoFi",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Affirm",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs?content=true",
+    "employer": "Affirm",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Stripe",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true",
+    "employer": "Stripe",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Gusto",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/gusto/jobs?content=true",
+    "employer": "Gusto",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  },
+  {
+    "name": "Block",
+    "ats": "Greenhouse",
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/block/jobs?content=true",
+    "employer": "Block",
+    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+  }
+]

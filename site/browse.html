@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>Job Watcher — Browse</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="browse">
+  <div class="noise"></div>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="Job Watcher home"><span class="brand-mark"><span></span><span></span><span></span></span><span>Job <em>Watcher</em></span></a>
+    <nav class="main-nav" aria-label="Primary navigation"><a href="index.html">Today</a><a class="active" href="browse.html">Browse <span class="nav-count" data-open-count>18</span></a><a href="market.html">Market</a></nav>
+    <div class="header-meta"><span class="live-dot"></span><span data-run-label>Updating daily</span></div>
+  </header>
+
+  <main class="shell page-space">
+    <section class="page-intro browse-intro">
+      <div><p class="eyebrow"><span class="eyebrow-line"></span>The open board</p><h1>Find the role<br><span>worth your time.</span></h1></div>
+      <p class="page-intro-copy">Browse the live set, save the ones that stay with you, and let the rest fall away. Your shortlist lives in this browser.</p>
+    </section>
+
+    <section class="browse-toolbar panel">
+      <div class="toolbar-top">
+        <div class="segmented" role="group" aria-label="Posting scope"><button class="segment active" data-scope="role">In my lane</button><button class="segment" data-scope="all">All postings</button></div>
+        <div class="toolbar-summary"><strong data-result-count>0</strong> open roles <span class="toolbar-divider"></span><span class="saved-dot"></span><strong data-shortlist-count>0</strong> saved</div>
+      </div>
+      <div class="filter-row">
+        <label class="search-field"><span>⌕</span><input type="search" data-search placeholder="Search titles or employers"></label>
+        <label class="filter-field"><span>Employer</span><select data-filter="employer"><option value="">All employers</option></select></label>
+        <label class="filter-field"><span>Location</span><select data-filter="location"><option value="">All locations</option></select></label>
+        <label class="filter-field filter-days"><span>Days open</span><select data-filter="days"><option value="">Any age</option><option value="3">3 days or less</option><option value="7">7 days or less</option><option value="14">14 days or less</option></select></label>
+        <label class="filter-field"><span>Sort</span><select data-sort><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="employer">Employer A–Z</option></select></label>
+      </div>
+    </section>
+
+    <section class="browse-layout">
+      <div class="browse-main">
+        <div class="browse-heading"><div><p class="eyebrow">Your current read</p><h2 data-browse-heading>Roles in your lane</h2></div><span class="updated-stamp">Last run <strong data-last-run-short>Nov 15</strong></span></div>
+        <div class="role-list" data-role-list></div>
+        <div class="empty-state" data-empty-state hidden><span>◌</span><h3>Nothing fits that filter yet.</h3><p>Try a wider search or switch to all postings.</p></div>
+      </div>
+      <aside class="browse-side">
+        <div class="panel shortlist-panel"><div class="section-heading"><div><p class="eyebrow">Keep an eye on</p><h2>Your shortlist</h2></div><span class="star-big">★</span></div><p class="panel-intro">Stars stay in this browser after you leave. Use them for the conversations worth having.</p><div class="shortlist-preview" data-shortlist-preview></div><a class="quiet-button" href="#" data-show-shortlist>Show saved roles <span>→</span></a></div>
+        <div class="aside-note"><span class="note-icon">⌁</span><p><strong>Small signal, big picture.</strong><br>Role titles are grouped by the current finance-track rule; you can still open every posting returned by the watchlist.</p></div>
+      </aside>
+    </section>
+  </main>
+  <footer class="site-footer shell"><span>JOB WATCHER</span><span>Browse what is open.</span><span data-footer-date>Updated daily · UTC</span></footer>
+  <script src="demo-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

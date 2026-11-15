@@ -1,0 +1,17 @@
+{
+  "run_time": "2026-11-15T13:25:00Z",
+  "first_run_date": "2026-11-10",
+  "days_with_success": 6,
+  "open": 18,
+  "new_today": 3,
+  "removed_today": 2,
+  "demo": true,
+  "sources": [
+    {"name": "Community banking", "ok": true, "count": 4},
+    {"name": "Commercial lending", "ok": true, "count": 3},
+    {"name": "Wealth planning", "ok": true, "count": 4},
+    {"name": "Real estate finance", "ok": true, "count": 3},
+    {"name": "Mission-driven finance", "ok": true, "count": 2},
+    {"name": "Financial analysis", "ok": false, "count": 0}
+  ]
+}

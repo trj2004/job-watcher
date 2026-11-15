@@ -1,10 +1,11 @@
 [
   {
     "name": "Plaid",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/plaid/jobs?content=true",
+    "ats": "Ashby",
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/plaid?includeCompensation=false",
     "employer": "Plaid",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+    "items_path": "jobs",
+    "fields": {"source_id": "id", "location": "location", "department": ["department", "team"], "posted_date": "publishedAt", "url": "applyUrl"}
   },
   {
     "name": "Brex",
@@ -50,10 +51,10 @@
   },
   {
     "name": "Wealthfront",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/wealthfront/jobs?content=true",
+    "ats": "Lever",
+    "endpoint": "https://api.lever.co/v0/postings/wealthfront?mode=json",
     "employer": "Wealthfront",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+    "fields": {"source_id": "id", "title": "text", "location": "categories.allLocations", "department": "categories.department", "posted_date": "createdAt", "url": "hostedUrl"}
   },
   {
     "name": "Carta",

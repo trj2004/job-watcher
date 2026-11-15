@@ -1,17 +1,86 @@
 {
-  "run_time": "2026-11-15T13:25:00Z",
-  "first_run_date": "2026-11-10",
-  "days_with_success": 6,
-  "open": 18,
-  "new_today": 3,
-  "removed_today": 2,
-  "demo": true,
+  "run_time": "2026-11-15T21:54:20.189209Z",
+  "first_run_date": "2026-11-15",
+  "days_with_success": 1,
+  "open": 2452,
+  "new_today": 0,
+  "removed_today": 0,
   "sources": [
-    {"name": "Community banking", "ok": true, "count": 4},
-    {"name": "Commercial lending", "ok": true, "count": 3},
-    {"name": "Wealth planning", "ok": true, "count": 4},
-    {"name": "Real estate finance", "ok": true, "count": 3},
-    {"name": "Mission-driven finance", "ok": true, "count": 2},
-    {"name": "Financial analysis", "ok": false, "count": 0}
-  ]
+    {
+      "name": "Plaid",
+      "ok": true,
+      "count": 142
+    },
+    {
+      "name": "Brex",
+      "ok": true,
+      "count": 286
+    },
+    {
+      "name": "Ramp",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "Chime",
+      "ok": true,
+      "count": 71
+    },
+    {
+      "name": "Robinhood",
+      "ok": true,
+      "count": 165
+    },
+    {
+      "name": "Coinbase",
+      "ok": true,
+      "count": 265
+    },
+    {
+      "name": "Betterment",
+      "ok": true,
+      "count": 28
+    },
+    {
+      "name": "Wealthfront",
+      "ok": true,
+      "count": 21
+    },
+    {
+      "name": "Carta",
+      "ok": true,
+      "count": 78
+    },
+    {
+      "name": "Mercury",
+      "ok": true,
+      "count": 79
+    },
+    {
+      "name": "SoFi",
+      "ok": true,
+      "count": 48
+    },
+    {
+      "name": "Affirm",
+      "ok": true,
+      "count": 217
+    },
+    {
+      "name": "Stripe",
+      "ok": true,
+      "count": 785
+    },
+    {
+      "name": "Gusto",
+      "ok": true,
+      "count": 75
+    },
+    {
+      "name": "Block",
+      "ok": true,
+      "count": 191
+    }
+  ],
+  "demo": false
 }

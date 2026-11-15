@@ -4,7 +4,7 @@ import gzip
 import json
 from pathlib import Path
 
-from jobwatcher.history import COMMON_COLUMNS, build_history
+from jobwatcher.history import COMMON_COLUMNS, build_history, normalize_posting
 
 
 def write_raw(root: Path, day: str, source: str, postings: list[dict]) -> None:
@@ -44,3 +44,32 @@ def test_missing_listing_is_removed_only_when_source_has_a_raw_file(tmp_path: Pa
     assert rows[0]["status"] == "removed"
     assert rows[0]["removed_date"] == "2026-01-03"
     assert status["removed_today"] == 1
+
+
+def test_nested_ats_fields_and_millisecond_dates_are_normalized():
+    row = normalize_posting(
+        {
+            "id": "wealthfront-1",
+            "text": "Financial Planning Associate",
+            "categories": {"department": "Client Services", "allLocations": ["Dallas, TX", "Remote"]},
+            "createdAt": 1763164800000,
+            "hostedUrl": "https://example.com/wealthfront-1",
+        },
+        "Wealthfront",
+        {
+            "employer": "Wealthfront",
+            "fields": {
+                "source_id": "id",
+                "title": "text",
+                "location": "categories.allLocations",
+                "department": "categories.department",
+                "posted_date": "createdAt",
+                "url": "hostedUrl",
+            },
+        },
+    )
+
+    assert row["source_id"] == "wealthfront-1"
+    assert row["location"] == "Dallas, TX, Remote"
+    assert row["department"] == "Client Services"
+    assert row["posted_date"] == "2025-11-15"

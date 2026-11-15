@@ -16,6 +16,8 @@ The first checkpoint includes:
 
 The demo seed is clearly labeled in the interface. The first successful pipeline run will replace it with source-backed data.
 
+The first live collection has now completed successfully across all 15 configured employer sources. The current snapshot is stored in `data/raw/2026-11-15/`, with 2,452 open postings represented in the history file. The Browse page defaults to Dallas/DFW locations first while keeping nationwide and remote opportunities available.
+
 ## Watchlist direction
 
 The initial role family is deliberately broad:
@@ -28,6 +30,8 @@ The initial role family is deliberately broad:
 - affordable housing and community-development finance
 
 The current title rule marks a posting as `in_role` when its title contains one of the finance-track phrases in `jobwatcher/title_rules.py`. The browse page still supports viewing every posting returned by the watched employers, so the watchlist can remain exploratory while the primary category is refined.
+
+The current source set includes Plaid, Brex, Ramp, Chime, Robinhood, Coinbase, Betterment, Wealthfront, Carta, Mercury, SoFi, Affirm, Stripe, Gusto, and Block. Sources are read from their public ATS JSON endpoints; the project does not require employer logins and does not scrape HTML job pages.
 
 ## Local preview
 

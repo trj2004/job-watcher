@@ -48,6 +48,17 @@ def _value(record: Mapping[str, Any], keys: Iterable[str]) -> Any:
     return ""
 
 
+def _path_value(record: Mapping[str, Any], path: str) -> Any:
+    """Read a simple dotted path from a nested ATS record."""
+
+    current: Any = record
+    for part in path.split("."):
+        if not isinstance(current, Mapping):
+            return ""
+        current = current.get(part, "")
+    return current
+
+
 def _flatten_value(value: Any) -> str:
     if isinstance(value, str):
         return value.strip()
@@ -93,7 +104,7 @@ def normalize_posting(raw: Mapping[str, Any], source: str, source_config: Mappin
     for field in ("source_id", "employer", "title", "location", "department", "posted_date", "url"):
         configured = mapped.get(field)
         if isinstance(configured, str):
-            values[field] = raw.get(configured, "")
+            values[field] = _path_value(raw, configured)
         elif isinstance(configured, list):
             values[field] = _value(raw, configured)
         else:
@@ -105,6 +116,12 @@ def normalize_posting(raw: Mapping[str, Any], source: str, source_config: Mappin
     employer = _flatten_value(values["employer"]) or config.get("employer", source)
     title = _flatten_value(values["title"]) or "Untitled posting"
     url = _flatten_value(values["url"])
+    posted_value = values["posted_date"]
+    if isinstance(posted_value, (int, float)):
+        timestamp = posted_value / 1000 if posted_value > 10_000_000_000 else posted_value
+        posted_date = datetime.fromtimestamp(timestamp, UTC).date().isoformat()
+    else:
+        posted_date = _flatten_value(posted_value)[:10]
     return {
         "posting_id": f"{source}:{source_id}",
         "source": source,
@@ -113,7 +130,7 @@ def normalize_posting(raw: Mapping[str, Any], source: str, source_config: Mappin
         "title": title,
         "location": _flatten_value(values["location"]),
         "department": _flatten_value(values["department"]),
-        "posted_date": _flatten_value(values["posted_date"])[:10],
+        "posted_date": posted_date,
         "url": url,
         "in_role": "true" if in_role(title) else "false",
     }

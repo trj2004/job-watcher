@@ -6,15 +6,20 @@ import gzip
 import json
 import os
 import shutil
+import sys
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 import requests
 
+# Keep direct `python scripts/run_pipeline.py` execution working from the
+# repository root and from GitHub Actions.
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
 from jobwatcher.history import _extract_items, build_history
 
-ROOT = Path(__file__).resolve().parents[1]
 SOURCE_FILE = ROOT / "sources" / "sources.json"
 
 

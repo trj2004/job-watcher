@@ -3,7 +3,7 @@
 
   const page = document.body.dataset.page || 'today';
   const demo = window.JOB_WATCHER_DEMO || { status: {}, history: [] };
-  const state = { status: null, history: [], scope: 'role', filters: { search: '', employer: '', location: '', days: '' }, sort: 'newest', shortlistOnly: false };
+  const state = { status: null, history: [], scope: 'role', filters: { search: '', employer: '', location: '', days: '' }, sort: 'dallas', shortlistOnly: false };
   const SHORTLIST_KEY = 'job-watcher-shortlist-v1';
 
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -27,6 +27,7 @@
   const getShortlist = () => { try { return JSON.parse(localStorage.getItem(SHORTLIST_KEY) || '[]'); } catch (error) { return []; } };
   const setShortlist = values => localStorage.setItem(SHORTLIST_KEY, JSON.stringify(values));
   const isSaved = id => getShortlist().includes(id);
+  const isDallasArea = location => /\b(?:dallas|fort worth|irving|plano|frisco|richardson|arlington|mckinney|carrollton|addison|grapevine|coppell|lewisville|southlake|the colony|allen|garland|mesquite|farmers branch)\b/i.test(location || '');
 
   function parseCSV(text) {
     const rows = []; let row = []; let cell = ''; let quoted = false;
@@ -121,7 +122,7 @@
     rows = rows.filter(row => !state.filters.employer || row.employer === state.filters.employer);
     rows = rows.filter(row => !state.filters.location || row.location === state.filters.location);
     rows = rows.filter(row => !state.filters.days || (daysBetween(row.first_seen, latestRunDate()) ?? 999) <= Number(state.filters.days));
-    rows.sort((a, b) => state.sort === 'employer' ? a.employer.localeCompare(b.employer) : state.sort === 'oldest' ? a.first_seen.localeCompare(b.first_seen) : b.first_seen.localeCompare(a.first_seen));
+    rows.sort((a, b) => state.sort === 'dallas' ? Number(isDallasArea(b.location)) - Number(isDallasArea(a.location)) || b.first_seen.localeCompare(a.first_seen) : state.sort === 'employer' ? a.employer.localeCompare(b.employer) : state.sort === 'oldest' ? a.first_seen.localeCompare(b.first_seen) : b.first_seen.localeCompare(a.first_seen));
     $('[data-result-count]').textContent = rows.length;
     $('[data-browse-heading]').textContent = state.shortlistOnly ? 'Saved roles' : state.scope === 'role' ? 'Roles in your lane' : 'All open postings';
     $('[data-role-list]').innerHTML = rows.map((row, index) => roleCard(row, index)).join('');
@@ -131,7 +132,7 @@
   }
 
   function roleCard(row, index) {
-    return `<article class="role-card"><span class="role-index">${String(index + 1).padStart(2, '0')}</span><div><div class="role-title">${esc(row.title)}</div><div class="role-employer">${esc(row.employer)}</div></div><div class="role-location"><span>Location</span>${esc(row.location || 'Not listed')}</div><div class="role-department"><span>Team</span>${esc(row.department || '—')}</div><div class="role-age"><strong>${esc(relativeAge(row))}</strong><span>${formatShortDate(row.first_seen)}</span></div><div class="role-actions"><a class="apply-link" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open application">↗</a><button class="star-button ${isSaved(row.posting_id) ? 'saved' : ''}" data-star="${esc(row.posting_id)}" aria-label="${isSaved(row.posting_id) ? 'Remove from shortlist' : 'Save to shortlist'}">★</button></div></article>`;
+    return `<article class="role-card"><span class="role-index">${String(index + 1).padStart(2, '0')}</span><div><div class="role-title">${esc(row.title)}</div><div class="role-employer">${esc(row.employer)}</div></div><div class="role-location"><span>Location${isDallasArea(row.location) ? ' · DFW' : ''}</span>${esc(row.location || 'Not listed')}</div><div class="role-department"><span>Team</span>${esc(row.department || '—')}</div><div class="role-age"><strong>${esc(relativeAge(row))}</strong><span>${formatShortDate(row.first_seen)}</span></div><div class="role-actions"><a class="apply-link" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open application">↗</a><button class="star-button ${isSaved(row.posting_id) ? 'saved' : ''}" data-star="${esc(row.posting_id)}" aria-label="${isSaved(row.posting_id) ? 'Remove from shortlist' : 'Save to shortlist'}">★</button></div></article>`;
   }
 
   function toggleStar(id) { const values = getShortlist(); const next = values.includes(id) ? values.filter(value => value !== id) : [...values, id]; setShortlist(next); renderBrowse(); }

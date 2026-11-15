@@ -1,0 +1,65 @@
+{
+  "run_time": "2026-11-15T21:54:20.189209Z",
+  "sources": {
+    "Plaid": {
+      "ok": true,
+      "count": 142
+    },
+    "Brex": {
+      "ok": true,
+      "count": 286
+    },
+    "Ramp": {
+      "ok": true,
+      "count": 1
+    },
+    "Chime": {
+      "ok": true,
+      "count": 71
+    },
+    "Robinhood": {
+      "ok": true,
+      "count": 165
+    },
+    "Coinbase": {
+      "ok": true,
+      "count": 265
+    },
+    "Betterment": {
+      "ok": true,
+      "count": 28
+    },
+    "Wealthfront": {
+      "ok": true,
+      "count": 21
+    },
+    "Carta": {
+      "ok": true,
+      "count": 78
+    },
+    "Mercury": {
+      "ok": true,
+      "count": 79
+    },
+    "SoFi": {
+      "ok": true,
+      "count": 48
+    },
+    "Affirm": {
+      "ok": true,
+      "count": 217
+    },
+    "Stripe": {
+      "ok": true,
+      "count": 785
+    },
+    "Gusto": {
+      "ok": true,
+      "count": 75
+    },
+    "Block": {
+      "ok": true,
+      "count": 191
+    }
+  }
+}

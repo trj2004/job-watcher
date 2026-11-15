@@ -2,54 +2,54 @@
   "run_time": "2026-11-15T22:43:08.789351Z",
   "first_run_date": "2026-11-15",
   "days_with_success": 1,
-  "open": 4266,
+  "open": 9843,
   "new_today": 0,
   "removed_today": 0,
   "sources": [
     {
       "name": "Texas Capital Bank",
       "ok": true,
-      "count": 0
+      "count": 105
     },
     {
       "name": "Frost Bank",
       "ok": true,
-      "count": 0
+      "count": 178
     },
     {
       "name": "Ares Management",
       "ok": true,
-      "count": 0
+      "count": 239
     },
     {
       "name": "Bain Capital",
       "ok": true,
-      "count": 0
+      "count": 33
     },
     {
       "name": "Blackstone",
       "ok": true,
-      "count": 0
+      "count": 140
     },
     {
       "name": "JLL",
       "ok": true,
-      "count": 0
+      "count": 1600
     },
     {
       "name": "State Street",
       "ok": true,
-      "count": 0
+      "count": 1164
     },
     {
       "name": "Capital One",
       "ok": true,
-      "count": 0
+      "count": 1600
     },
     {
       "name": "LPL Financial",
       "ok": true,
-      "count": 0
+      "count": 315
     },
     {
       "name": "JPMorgan Chase",
@@ -79,7 +79,7 @@
     {
       "name": "Invesco",
       "ok": true,
-      "count": 0
+      "count": 203
     }
   ],
   "demo": false

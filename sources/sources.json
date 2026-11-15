@@ -7,7 +7,7 @@
     "site_path": "Careers",
     "employer": "Texas Capital Bank",
     "url_prefix": "https://texascapitalbank.wd12.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
     "name": "Frost Bank",
@@ -17,7 +17,7 @@
     "site_path": "External",
     "employer": "Frost Bank",
     "url_prefix": "https://frostbank.wd5.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
     "name": "Ares Management",
@@ -27,7 +27,7 @@
     "site_path": "External",
     "employer": "Ares Management",
     "url_prefix": "https://aresmgmt.wd1.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
     "name": "Bain Capital",
@@ -37,7 +37,7 @@
     "site_path": "External_Public",
     "employer": "Bain Capital",
     "url_prefix": "https://baincapital.wd1.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
     "name": "Blackstone",
@@ -47,7 +47,7 @@
     "site_path": "Blackstone_Careers",
     "employer": "Blackstone",
     "url_prefix": "https://blackstone.wd1.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
     "name": "JLL",
@@ -57,7 +57,7 @@
     "site_path": "jllcareers",
     "employer": "JLL",
     "url_prefix": "https://jll.wd1.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
     "name": "State Street",
@@ -67,7 +67,7 @@
     "site_path": "Global",
     "employer": "State Street",
     "url_prefix": "https://statestreet.wd1.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
     "name": "Capital One",
@@ -77,7 +77,7 @@
     "site_path": "Capital_One",
     "employer": "Capital One",
     "url_prefix": "https://capitalone.wd12.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
     "name": "LPL Financial",
@@ -87,7 +87,7 @@
     "site_path": "External",
     "employer": "LPL Financial",
     "url_prefix": "https://lplfinancial.wd1.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
     "name": "JPMorgan Chase",
@@ -140,6 +140,6 @@
     "site_path": "IVZ",
     "employer": "Invesco",
     "url_prefix": "https://invesco.wd1.myworkdayjobs.com",
-    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+    "fields": {"source_id": ["jobPostingId", "bulletFields", "id"], "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   }
 ]

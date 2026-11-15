@@ -143,8 +143,8 @@ def _eightfold_payload(source: dict[str, Any]) -> dict[str, Any]:
         total = payload.get("data", {}).get("total")
         if isinstance(total, int) and start >= total:
             break
-        if len(batch) < limit:
-            break
+        # Eightfold may cap each response below the requested limit. An empty
+        # page, rather than a short page, is the reliable end marker.
 
     return {"jobs": jobs}
 

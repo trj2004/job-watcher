@@ -89,11 +89,13 @@ def test_relative_url_epoch_date_and_location_parts_are_normalized():
         {
             "url_prefix": "https://morganstanley.eightfold.ai",
             "location_fields": ["primary_city", "primary_state"],
+            "employer": "Morgan Stanley",
             "fields": {"source_id": "id", "title": "name", "location": "positionUrl", "posted_date": "postedTs", "url": "positionUrl"},
         },
     )
 
     assert row["location"] == "Dallas, Texas"
+    assert row["employer"] == "Morgan Stanley"
     assert row["posted_date"] == "2025-11-15"
     assert row["url"] == "https://morganstanley.eightfold.ai/careers/job/549800790247"
 

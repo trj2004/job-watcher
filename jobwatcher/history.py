@@ -120,7 +120,11 @@ def normalize_posting(raw: Mapping[str, Any], source: str, source_config: Mappin
     source_id = _flatten_value(values["source_id"])
     if not source_id:
         raise ValueError(f"source record has no source ID: {raw!r}")
-    employer = _flatten_value(values["employer"]) or config.get("employer", source)
+    employer = (
+        str(config["employer"])
+        if config.get("employer") and not mapped.get("employer")
+        else _flatten_value(values["employer"]) or config.get("employer", source)
+    )
     title = _flatten_value(values["title"]) or "Untitled posting"
     url = _flatten_value(values["url"])
     if not url and config.get("url_template"):

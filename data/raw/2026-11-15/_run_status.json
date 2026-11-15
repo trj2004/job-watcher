@@ -1,65 +1,65 @@
 {
-  "run_time": "2026-11-15T21:58:49.546681Z",
+  "run_time": "2026-11-15T22:43:08.789351Z",
   "sources": {
-    "Plaid": {
+    "Texas Capital Bank": {
       "ok": true,
-      "count": 142
+      "count": 105
     },
-    "Brex": {
+    "Frost Bank": {
       "ok": true,
-      "count": 286
+      "count": 178
     },
-    "Ramp": {
+    "Ares Management": {
       "ok": true,
-      "count": 1
+      "count": 239
     },
-    "Chime": {
+    "Bain Capital": {
       "ok": true,
-      "count": 71
+      "count": 33
     },
-    "Robinhood": {
+    "Blackstone": {
       "ok": true,
-      "count": 165
+      "count": 160
     },
-    "Coinbase": {
+    "JLL": {
       "ok": true,
-      "count": 265
+      "count": 1600
     },
-    "Betterment": {
+    "State Street": {
       "ok": true,
-      "count": 28
+      "count": 1164
     },
-    "Wealthfront": {
+    "Capital One": {
       "ok": true,
-      "count": 21
+      "count": 1600
     },
-    "Carta": {
+    "LPL Financial": {
       "ok": true,
-      "count": 78
+      "count": 315
     },
-    "Mercury": {
+    "JPMorgan Chase": {
       "ok": true,
-      "count": 79
+      "count": 4000
     },
-    "SoFi": {
-      "ok": true,
-      "count": 48
-    },
-    "Affirm": {
+    "Newmark": {
       "ok": true,
       "count": 217
     },
-    "Stripe": {
+    "Edward Jones": {
       "ok": true,
-      "count": 785
+      "count": 10
     },
-    "Gusto": {
+    "Morgan Stanley": {
       "ok": true,
-      "count": 75
+      "count": 10
     },
-    "Block": {
+    "Climate First Bank": {
       "ok": true,
-      "count": 191
+      "count": 29
+    },
+    "Invesco": {
+      "ok": true,
+      "count": 203
     }
   }
 }

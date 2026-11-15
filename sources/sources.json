@@ -1,108 +1,145 @@
 [
   {
-    "name": "Plaid",
-    "ats": "Ashby",
-    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/plaid?includeCompensation=false",
-    "employer": "Plaid",
-    "items_path": "jobs",
-    "fields": {"source_id": "id", "location": "location", "department": ["department", "team"], "posted_date": "publishedAt", "url": "applyUrl"}
+    "name": "Texas Capital Bank",
+    "ats": "Workday",
+    "endpoint": "https://texascapitalbank.wd12.myworkdayjobs.com/wday/cxs/texascapitalbank/Careers/jobs",
+    "site_base": "https://texascapitalbank.wd12.myworkdayjobs.com",
+    "site_path": "Careers",
+    "employer": "Texas Capital Bank",
+    "url_prefix": "https://texascapitalbank.wd12.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   },
   {
-    "name": "Brex",
+    "name": "Frost Bank",
+    "ats": "Workday",
+    "endpoint": "https://frostbank.wd5.myworkdayjobs.com/wday/cxs/frostbank/External/jobs",
+    "site_base": "https://frostbank.wd5.myworkdayjobs.com",
+    "site_path": "External",
+    "employer": "Frost Bank",
+    "url_prefix": "https://frostbank.wd5.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+  },
+  {
+    "name": "Ares Management",
+    "ats": "Workday",
+    "endpoint": "https://aresmgmt.wd1.myworkdayjobs.com/wday/cxs/aresmgmt/External/jobs",
+    "site_base": "https://aresmgmt.wd1.myworkdayjobs.com",
+    "site_path": "External",
+    "employer": "Ares Management",
+    "url_prefix": "https://aresmgmt.wd1.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+  },
+  {
+    "name": "Bain Capital",
+    "ats": "Workday",
+    "endpoint": "https://baincapital.wd1.myworkdayjobs.com/wday/cxs/baincapital/External_Public/jobs",
+    "site_base": "https://baincapital.wd1.myworkdayjobs.com",
+    "site_path": "External_Public",
+    "employer": "Bain Capital",
+    "url_prefix": "https://baincapital.wd1.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+  },
+  {
+    "name": "Blackstone",
+    "ats": "Workday",
+    "endpoint": "https://blackstone.wd1.myworkdayjobs.com/wday/cxs/blackstone/Blackstone_Careers/jobs",
+    "site_base": "https://blackstone.wd1.myworkdayjobs.com",
+    "site_path": "Blackstone_Careers",
+    "employer": "Blackstone",
+    "url_prefix": "https://blackstone.wd1.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+  },
+  {
+    "name": "JLL",
+    "ats": "Workday",
+    "endpoint": "https://jll.wd1.myworkdayjobs.com/wday/cxs/jll/jllcareers/jobs",
+    "site_base": "https://jll.wd1.myworkdayjobs.com",
+    "site_path": "jllcareers",
+    "employer": "JLL",
+    "url_prefix": "https://jll.wd1.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+  },
+  {
+    "name": "State Street",
+    "ats": "Workday",
+    "endpoint": "https://statestreet.wd1.myworkdayjobs.com/wday/cxs/statestreet/Global/jobs",
+    "site_base": "https://statestreet.wd1.myworkdayjobs.com",
+    "site_path": "Global",
+    "employer": "State Street",
+    "url_prefix": "https://statestreet.wd1.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+  },
+  {
+    "name": "Capital One",
+    "ats": "Workday",
+    "endpoint": "https://capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs",
+    "site_base": "https://capitalone.wd12.myworkdayjobs.com",
+    "site_path": "Capital_One",
+    "employer": "Capital One",
+    "url_prefix": "https://capitalone.wd12.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+  },
+  {
+    "name": "LPL Financial",
+    "ats": "Workday",
+    "endpoint": "https://lplfinancial.wd1.myworkdayjobs.com/wday/cxs/lplfinancial/External/jobs",
+    "site_base": "https://lplfinancial.wd1.myworkdayjobs.com",
+    "site_path": "External",
+    "employer": "LPL Financial",
+    "url_prefix": "https://lplfinancial.wd1.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
+  },
+  {
+    "name": "JPMorgan Chase",
+    "ats": "Oracle",
+    "endpoint": "https://jpmc.fa.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions",
+    "site_number": "CX_1001",
+    "employer": "JPMorgan Chase",
+    "url_template": "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/job/{id}",
+    "fields": {"source_id": "Id", "title": "Title", "location": "PrimaryLocation", "department": "JobFamily", "posted_date": "PostedDate", "url": "url"}
+  },
+  {
+    "name": "Newmark",
+    "ats": "Oracle",
+    "endpoint": "https://hdow.fa.us6.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions",
+    "site_number": "CX_1001",
+    "employer": "Newmark",
+    "url_template": "https://hdow.fa.us6.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/job/{id}",
+    "fields": {"source_id": "Id", "title": "Title", "location": "PrimaryLocation", "department": "JobFamily", "posted_date": "PostedDate", "url": "url"}
+  },
+  {
+    "name": "Edward Jones",
+    "ats": "MCloud",
+    "endpoint": "https://jobsapi-internal.m-cloud.io/api/job?organization=2144",
+    "employer": "Edward Jones",
+    "items_path": "queryResult",
+    "fields": {"source_id": "id", "employer": "company_name", "title": "title", "department": "department", "posted_date": "open_date", "url": "url"},
+    "location_fields": ["primary_city", "primary_state"]
+  },
+  {
+    "name": "Morgan Stanley",
+    "ats": "Eightfold",
+    "endpoint": "https://morganstanley.eightfold.ai/api/pcsx/search",
+    "domain": "morganstanley.com",
+    "employer": "Morgan Stanley",
+    "url_prefix": "https://morganstanley.eightfold.ai",
+    "fields": {"source_id": "id", "title": "name", "location": "standardizedLocations", "department": "department", "posted_date": "postedTs", "url": "positionUrl"}
+  },
+  {
+    "name": "Climate First Bank",
     "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/brex/jobs?content=true",
-    "employer": "Brex",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/climatefirstbank/jobs?content=true",
+    "employer": "Climate First Bank",
+    "fields": {"source_id": "id", "employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
   },
   {
-    "name": "Ramp",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/ramp/jobs?content=true",
-    "employer": "Ramp",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Chime",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/chime/jobs?content=true",
-    "employer": "Chime",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Robinhood",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/robinhood/jobs?content=true",
-    "employer": "Robinhood",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Coinbase",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs?content=true",
-    "employer": "Coinbase",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Betterment",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/betterment/jobs?content=true",
-    "employer": "Betterment",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Wealthfront",
-    "ats": "Lever",
-    "endpoint": "https://api.lever.co/v0/postings/wealthfront?mode=json",
-    "employer": "Wealthfront",
-    "fields": {"source_id": "id", "title": "text", "location": "categories.allLocations", "department": "categories.department", "posted_date": "createdAt", "url": "hostedUrl"}
-  },
-  {
-    "name": "Carta",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/carta/jobs?content=true",
-    "employer": "Carta",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Mercury",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/mercury/jobs?content=true",
-    "employer": "Mercury",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "SoFi",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/sofi/jobs?content=true",
-    "employer": "SoFi",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Affirm",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs?content=true",
-    "employer": "Affirm",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Stripe",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true",
-    "employer": "Stripe",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Gusto",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/gusto/jobs?content=true",
-    "employer": "Gusto",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
-  },
-  {
-    "name": "Block",
-    "ats": "Greenhouse",
-    "endpoint": "https://boards-api.greenhouse.io/v1/boards/block/jobs?content=true",
-    "employer": "Block",
-    "fields": {"employer": "company_name", "location": "location", "department": ["departments", "department"], "posted_date": ["updated_at", "created_at"], "url": "absolute_url"}
+    "name": "Invesco",
+    "ats": "Workday",
+    "endpoint": "https://invesco.wd1.myworkdayjobs.com/wday/cxs/invesco/IVZ/jobs",
+    "site_base": "https://invesco.wd1.myworkdayjobs.com",
+    "site_path": "IVZ",
+    "employer": "Invesco",
+    "url_prefix": "https://invesco.wd1.myworkdayjobs.com",
+    "fields": {"source_id": "jobPostingId", "title": "title", "location": "locationsText", "department": "jobFamily", "posted_date": "postedOn", "url": "externalPath"}
   }
 ]

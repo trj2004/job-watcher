@@ -73,3 +73,36 @@ def test_nested_ats_fields_and_millisecond_dates_are_normalized():
     assert row["location"] == "Dallas, TX, Remote"
     assert row["department"] == "Client Services"
     assert row["posted_date"] == "2025-11-15"
+
+
+def test_relative_url_epoch_date_and_location_parts_are_normalized():
+    row = normalize_posting(
+        {
+            "id": 549800790247,
+            "name": "Premier Relationship Manager",
+            "primary_city": "Dallas",
+            "primary_state": "Texas",
+            "postedTs": 1763164800,
+            "positionUrl": "/careers/job/549800790247",
+        },
+        "Morgan Stanley",
+        {
+            "url_prefix": "https://morganstanley.eightfold.ai",
+            "location_fields": ["primary_city", "primary_state"],
+            "fields": {"source_id": "id", "title": "name", "location": "positionUrl", "posted_date": "postedTs", "url": "positionUrl"},
+        },
+    )
+
+    assert row["location"] == "Dallas, Texas"
+    assert row["posted_date"] == "2025-11-15"
+    assert row["url"] == "https://morganstanley.eightfold.ai/careers/job/549800790247"
+
+
+def test_history_ignores_raw_files_from_removed_sources(tmp_path: Path):
+    raw = tmp_path / "raw"
+    write_raw(raw, "2026-01-01", "old-source", [{"id": "old", "title": "Financial Analyst"}])
+    write_raw(raw, "2026-01-01", "active-source", [{"id": "active", "title": "Financial Analyst"}])
+
+    rows, _ = build_history(raw, tmp_path / "history.csv", tmp_path / "status.json", sources=[{"name": "active-source"}])
+
+    assert [row["source_id"] for row in rows] == ["active"]

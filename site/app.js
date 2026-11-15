@@ -28,6 +28,15 @@
   const setShortlist = values => localStorage.setItem(SHORTLIST_KEY, JSON.stringify(values));
   const isSaved = id => getShortlist().includes(id);
   const isDallasArea = location => /\b(?:dallas|fort worth|irving|plano|frisco|richardson|arlington|mckinney|carrollton|addison|grapevine|coppell|lewisville|southlake|the colony|allen|garland|mesquite|farmers branch)\b/i.test(location || '');
+  const roleTrack = row => {
+    const text = `${row.title || ''} ${row.department || ''}`.toLowerCase();
+    if (/real estate|property|acquisition|development/.test(text)) return 'Real estate';
+    if (/wealth|financial advisor|financial planner|private bank|trust|client service/.test(text)) return 'Wealth & advice';
+    if (/loan|credit|underwrit|lending/.test(text)) return 'Credit & lending';
+    if (/commercial bank|business bank|relationship manager|treasury/.test(text)) return 'Banking';
+    if (/investment|portfolio|asset management|capital markets/.test(text)) return 'Investments';
+    return 'Finance & risk';
+  };
 
   function parseCSV(text) {
     const rows = []; let row = []; let cell = ''; let quoted = false;
@@ -64,6 +73,7 @@
       if (!state.status || !Array.isArray(state.history)) { state.status = demo.status; state.history = demo.history; }
     }
     document.body.classList.toggle('is-demo', Boolean(state.status.demo));
+    if ($('[data-demo-note]')) $('[data-demo-note]').hidden = !state.status.demo;
     renderShared();
     if (page === 'today') renderToday();
     if (page === 'browse') renderBrowse();
@@ -132,7 +142,7 @@
   }
 
   function roleCard(row, index) {
-    return `<article class="role-card"><span class="role-index">${String(index + 1).padStart(2, '0')}</span><div><div class="role-title">${esc(row.title)}</div><div class="role-employer">${esc(row.employer)}</div></div><div class="role-location"><span>Location${isDallasArea(row.location) ? ' · DFW' : ''}</span>${esc(row.location || 'Not listed')}</div><div class="role-department"><span>Team</span>${esc(row.department || '—')}</div><div class="role-age"><strong>${esc(relativeAge(row))}</strong><span>${formatShortDate(row.first_seen)}</span></div><div class="role-actions"><a class="apply-link" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open application">↗</a><button class="star-button ${isSaved(row.posting_id) ? 'saved' : ''}" data-star="${esc(row.posting_id)}" aria-label="${isSaved(row.posting_id) ? 'Remove from shortlist' : 'Save to shortlist'}">★</button></div></article>`;
+    return `<article class="role-card"><span class="role-index">${String(index + 1).padStart(2, '0')}</span><div><div class="role-title">${esc(row.title)}</div><div class="role-employer">${esc(row.employer)}</div><span class="role-track">${esc(roleTrack(row))}</span></div><div class="role-location"><span>Location${isDallasArea(row.location) ? ' · DFW' : ''}</span>${esc(row.location || 'Not listed')}</div><div class="role-department"><span>Team</span>${esc(row.department || '—')}</div><div class="role-age"><strong>${esc(relativeAge(row))}</strong><span>${formatShortDate(row.first_seen)}</span></div><div class="role-actions"><a class="apply-link" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open application">↗</a><button class="star-button ${isSaved(row.posting_id) ? 'saved' : ''}" data-star="${esc(row.posting_id)}" aria-label="${isSaved(row.posting_id) ? 'Remove from shortlist' : 'Save to shortlist'}">★</button></div></article>`;
   }
 
   function toggleStar(id) { const values = getShortlist(); const next = values.includes(id) ? values.filter(value => value !== id) : [...values, id]; setShortlist(next); renderBrowse(); }

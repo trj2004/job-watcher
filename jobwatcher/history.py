@@ -110,18 +110,33 @@ def normalize_posting(raw: Mapping[str, Any], source: str, source_config: Mappin
         else:
             values[field] = _value(raw, FIELD_CANDIDATES[field])
 
+    location_fields = config.get("location_fields")
+    if isinstance(location_fields, list):
+        values["location"] = [
+            value for field in location_fields
+            if (value := _path_value(raw, str(field))) not in (None, "", [])
+        ]
+
     source_id = _flatten_value(values["source_id"])
     if not source_id:
         raise ValueError(f"source record has no source ID: {raw!r}")
     employer = _flatten_value(values["employer"]) or config.get("employer", source)
     title = _flatten_value(values["title"]) or "Untitled posting"
     url = _flatten_value(values["url"])
+    if not url and config.get("url_template"):
+        url = str(config["url_template"]).format(source_id=source_id)
+    if url.startswith("/") and config.get("url_prefix"):
+        url = f"{str(config['url_prefix']).rstrip('/')}{url}"
     posted_value = values["posted_date"]
     if isinstance(posted_value, (int, float)):
         timestamp = posted_value / 1000 if posted_value > 10_000_000_000 else posted_value
         posted_date = datetime.fromtimestamp(timestamp, UTC).date().isoformat()
     else:
-        posted_date = _flatten_value(posted_value)[:10]
+        posted_text = _flatten_value(posted_value)
+        try:
+            posted_date = datetime.fromisoformat(posted_text.replace("Z", "+00:00")).date().isoformat()[:10]
+        except ValueError:
+            posted_date = posted_text[:10]
     return {
         "posting_id": f"{source}:{source_id}",
         "source": source,
@@ -169,7 +184,10 @@ def build_history(
     files: list[tuple[str, str, Path]] = []
     for day_dir in sorted(path for path in root.glob("????-??-??") if path.is_dir()):
         for raw_path in sorted(day_dir.glob("*.json.gz")):
-            files.append((day_dir.name, raw_path.name.removesuffix(".json.gz"), raw_path))
+            source = raw_path.name.removesuffix(".json.gz")
+            if source_configs and source not in source_configs:
+                continue
+            files.append((day_dir.name, source, raw_path))
 
     source_first_dates: dict[str, str] = {}
     for day, source, _ in files:

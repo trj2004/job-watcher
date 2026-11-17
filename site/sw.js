@@ -1,4 +1,4 @@
-const CACHE_NAME = 'job-watcher-shell-v2';
+const CACHE_NAME = 'job-watcher-shell-v3';
 const SCOPE = self.registration.scope;
 const SHELL = ['index.html', 'browse.html', 'market.html', 'career-fit.html', 'styles.css', 'app.js', 'demo-data.js', 'manifest.json'].map(file => new URL(file, SCOPE).toString());
 

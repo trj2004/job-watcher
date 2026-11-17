@@ -1,25 +1,25 @@
 {
-  "run_time": "2026-11-16T22:24:17.901977Z",
+  "run_time": "2026-11-17T21:10:30.241835Z",
   "first_run_date": "2026-11-15",
-  "days_with_success": 2,
-  "open": 10222,
-  "new_today": 975,
-  "removed_today": 596,
+  "days_with_success": 3,
+  "open": 10270,
+  "new_today": 633,
+  "removed_today": 605,
   "sources": [
     {
       "name": "Texas Capital Bank",
       "ok": true,
-      "count": 105
+      "count": 108
     },
     {
       "name": "Frost Bank",
       "ok": true,
-      "count": 186
+      "count": 185
     },
     {
       "name": "Ares Management",
       "ok": true,
-      "count": 237
+      "count": 239
     },
     {
       "name": "Bain Capital",
@@ -29,17 +29,17 @@
     {
       "name": "Blackstone",
       "ok": true,
-      "count": 142
+      "count": 139
     },
     {
       "name": "JLL",
       "ok": true,
-      "count": 1600
+      "count": 1595
     },
     {
       "name": "State Street",
       "ok": true,
-      "count": 1147
+      "count": 1187
     },
     {
       "name": "Capital One",
@@ -49,7 +49,7 @@
     {
       "name": "LPL Financial",
       "ok": true,
-      "count": 317
+      "count": 320
     },
     {
       "name": "JPMorgan Chase",
@@ -59,7 +59,7 @@
     {
       "name": "Newmark",
       "ok": true,
-      "count": 217
+      "count": 221
     },
     {
       "name": "Edward Jones",
@@ -69,17 +69,17 @@
     {
       "name": "Morgan Stanley",
       "ok": true,
-      "count": 391
+      "count": 393
     },
     {
       "name": "Climate First Bank",
       "ok": true,
-      "count": 29
+      "count": 30
     },
     {
       "name": "Invesco",
       "ok": true,
-      "count": 208
+      "count": 210
     }
   ],
   "demo": false

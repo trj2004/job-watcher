@@ -13,6 +13,7 @@
     { text: 'Good work is not only about finding a title. It is about finding a direction you can keep choosing.', source: 'JOB WATCHER · FIELD NOTE 05' },
     { text: 'Choose work that helps you become more capable, more useful, and more free over time.', source: 'JOB WATCHER · FIELD NOTE 06' }
   ];
+  const quotePageOffsets = { today: 0, browse: 2, market: 4, 'career-fit': 1 };
   const careerTracks = {
     banking: { name: 'Relationship-led banking', short: 'Banking', description: 'A people-centered finance lane built around trust, businesses, credit conversations, and long-term relationships.', roles: ['Commercial banking', 'Relationship management', 'Business banking', 'Treasury management'] },
     wealth: { name: 'Wealth & financial advice', short: 'Wealth & advice', description: 'A client-facing path focused on helping individuals and families make clearer decisions about money and their future.', roles: ['Financial advising', 'Private banking', 'Wealth management', 'Client service'] },
@@ -133,7 +134,8 @@
 
   function renderQuotes() {
     const date = latestRunDate();
-    const index = date ? Number(date.replace(/-/g, '')) % careerQuotes.length : 0;
+    const dailyIndex = date ? Number(date.replace(/-/g, '')) % careerQuotes.length : 0;
+    const index = (dailyIndex + (quotePageOffsets[page] || 0)) % careerQuotes.length;
     const quote = careerQuotes[index];
     $$('[data-career-quote]').forEach(element => { element.textContent = quote.text; });
     $$('[data-career-quote-source]').forEach(element => { element.textContent = quote.source; });

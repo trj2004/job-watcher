@@ -1,6 +1,6 @@
-const CACHE_NAME = 'job-watcher-shell-v1';
+const CACHE_NAME = 'job-watcher-shell-v2';
 const SCOPE = self.registration.scope;
-const SHELL = ['index.html', 'browse.html', 'market.html', 'styles.css', 'app.js', 'demo-data.js', 'manifest.json'].map(file => new URL(file, SCOPE).toString());
+const SHELL = ['index.html', 'browse.html', 'market.html', 'career-fit.html', 'styles.css', 'app.js', 'demo-data.js', 'manifest.json'].map(file => new URL(file, SCOPE).toString());
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)));

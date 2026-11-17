@@ -3,8 +3,24 @@
 
   const page = document.body.dataset.page || 'today';
   const demo = window.JOB_WATCHER_DEMO || { status: {}, history: [] };
-  const state = { status: null, history: [], scope: 'role', filters: { search: '', employer: '', location: '', experience: '', days: '' }, sort: 'dallas', shortlistOnly: false };
+  const state = { status: null, history: [], scope: 'role', filters: { search: '', employer: '', location: '', experience: '', days: '' }, sort: 'dallas', shortlistOnly: false, visibleLimit: 60 };
   const SHORTLIST_KEY = 'job-watcher-shortlist-v1';
+  const careerQuotes = [
+    { text: 'Keep the search broad enough to notice a direction, and specific enough to act on one.', source: 'JOB WATCHER · FIELD NOTE 01' },
+    { text: 'A career can begin with a practical first step and still become something deeply personal.', source: 'JOB WATCHER · FIELD NOTE 02' },
+    { text: 'The right path is often the one that gives your strengths somewhere useful to go.', source: 'JOB WATCHER · FIELD NOTE 03' },
+    { text: 'Pay attention to the pattern, but leave room for the possibility that your path changes.', source: 'JOB WATCHER · FIELD NOTE 04' },
+    { text: 'Good work is not only about finding a title. It is about finding a direction you can keep choosing.', source: 'JOB WATCHER · FIELD NOTE 05' },
+    { text: 'Choose work that helps you become more capable, more useful, and more free over time.', source: 'JOB WATCHER · FIELD NOTE 06' }
+  ];
+  const careerTracks = {
+    banking: { name: 'Relationship-led banking', short: 'Banking', description: 'A people-centered finance lane built around trust, businesses, credit conversations, and long-term relationships.', roles: ['Commercial banking', 'Relationship management', 'Business banking', 'Treasury management'] },
+    wealth: { name: 'Wealth & financial advice', short: 'Wealth & advice', description: 'A client-facing path focused on helping individuals and families make clearer decisions about money and their future.', roles: ['Financial advising', 'Private banking', 'Wealth management', 'Client service'] },
+    credit: { name: 'Credit & risk', short: 'Credit & lending', description: 'A judgment-heavy lane where you evaluate downside, structure lending, and help organizations make responsible financial decisions.', roles: ['Credit analysis', 'Underwriting', 'Commercial lending', 'Risk management'] },
+    investments: { name: 'Investments & portfolio work', short: 'Investments', description: 'A market-oriented path involving capital allocation, research, portfolio decisions, and the long-term value of assets.', roles: ['Investment analysis', 'Portfolio management', 'Asset management', 'Capital markets'] },
+    real_estate: { name: 'Real estate & asset management', short: 'Real estate', description: 'A tangible finance path connecting property, operations, investment decisions, and the people who make places work.', roles: ['Property management', 'Real estate finance', 'Acquisitions', 'Asset management'] },
+    finance: { name: 'Finance & strategy', short: 'Finance & strategy', description: 'A broad finance foundation built around decision support, forecasting, performance, and understanding how a business creates value.', roles: ['Financial analysis', 'FP&A', 'Strategic finance', 'Business performance'] }
+  };
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -102,6 +118,7 @@
     if (page === 'today') renderToday();
     if (page === 'browse') renderBrowse();
     if (page === 'market') renderMarket();
+    if (page === 'career-fit') initCareerFit();
   }
 
   function renderShared() {
@@ -111,6 +128,15 @@
     $$('[data-last-run-short]').forEach(element => { element.textContent = formatShortDate(latestRunDate()); });
     $$('[data-footer-date]').forEach(element => { element.textContent = `Updated ${formatShortDate(latestRunDate())} · UTC`; });
     $$('[data-metric]').forEach(element => { const key = element.dataset.metric; element.textContent = state.status[key] ?? '—'; });
+    renderQuotes();
+  }
+
+  function renderQuotes() {
+    const date = latestRunDate();
+    const index = date ? Number(date.replace(/-/g, '')) % careerQuotes.length : 0;
+    const quote = careerQuotes[index];
+    $$('[data-career-quote]').forEach(element => { element.textContent = quote.text; });
+    $$('[data-career-quote-source]').forEach(element => { element.textContent = quote.source; });
   }
 
   function miniPosting(row, kind) {
@@ -131,11 +157,22 @@
   }
 
   function initBrowse() {
-    $$('[data-scope]').forEach(button => button.addEventListener('click', () => { state.scope = button.dataset.scope; state.shortlistOnly = false; $$('[data-scope]').forEach(item => item.classList.toggle('active', item === button)); renderBrowse(); }));
-    $('[data-search]').addEventListener('input', event => { state.filters.search = event.target.value.trim().toLowerCase(); renderBrowse(); });
-    $$('[data-filter]').forEach(select => select.addEventListener('change', event => { state.filters[select.dataset.filter] = event.target.value; renderBrowse(); }));
-    $('[data-sort]').addEventListener('change', event => { state.sort = event.target.value; renderBrowse(); });
+    $$('[data-scope]').forEach(button => button.addEventListener('click', () => { state.scope = button.dataset.scope; state.shortlistOnly = false; state.visibleLimit = 60; $$('[data-scope]').forEach(item => item.classList.toggle('active', item === button)); renderBrowse(); }));
+    $('[data-search]').addEventListener('input', event => { state.filters.search = event.target.value.trim().toLowerCase(); state.visibleLimit = 60; renderBrowse(); });
+    $$('[data-filter]').forEach(select => select.addEventListener('change', event => { state.filters[select.dataset.filter] = event.target.value; state.visibleLimit = 60; renderBrowse(); }));
+    $('[data-sort]').addEventListener('change', event => { state.sort = event.target.value; state.visibleLimit = 60; renderBrowse(); });
     $('[data-show-shortlist]').addEventListener('click', event => { event.preventDefault(); state.shortlistOnly = !state.shortlistOnly; renderBrowse(); });
+    $('[data-reset-filters]').addEventListener('click', resetBrowse);
+    $('[data-load-more]').addEventListener('click', () => { state.visibleLimit += 60; renderBrowse(); });
+  }
+
+  function resetBrowse() {
+    state.scope = 'role'; state.shortlistOnly = false; state.visibleLimit = 60; state.filters = { search: '', employer: '', location: '', experience: '', days: '' }; state.sort = 'dallas';
+    $('[data-search]').value = '';
+    $$('[data-filter]').forEach(select => { select.value = ''; });
+    $('[data-sort]').value = 'dallas';
+    $$('[data-scope]').forEach(item => item.classList.toggle('active', item.dataset.scope === 'role'));
+    renderBrowse();
   }
 
   function populateSelect(selector, values, label) {
@@ -165,14 +202,20 @@
     rows.sort((a, b) => state.sort === 'dallas' ? Number(isDallasArea(b.location)) - Number(isDallasArea(a.location)) || b.first_seen.localeCompare(a.first_seen) : state.sort === 'employer' ? a.employer.localeCompare(b.employer) : state.sort === 'oldest' ? a.first_seen.localeCompare(b.first_seen) : b.first_seen.localeCompare(a.first_seen));
     $('[data-result-count]').textContent = rows.length;
     $('[data-browse-heading]').textContent = state.shortlistOnly ? 'Saved roles' : state.scope === 'role' ? 'Roles in your lane' : 'All open postings';
-    $('[data-role-list]').innerHTML = rows.map((row, index) => roleCard(row, index)).join('');
+    const visibleRows = rows.slice(0, state.visibleLimit);
+    $('[data-role-list]').innerHTML = visibleRows.map((row, index) => roleCard(row, index)).join('');
+    $('[data-visible-count]').textContent = rows.length ? `Showing ${visibleRows.length} of ${rows.length} matching roles` : '';
+    const loadMore = $('[data-load-more]');
+    loadMore.hidden = rows.length <= visibleRows.length;
+    if (!loadMore.hidden) loadMore.innerHTML = `Show ${Math.min(60, rows.length - visibleRows.length)} more roles <span>↓</span>`;
     $('[data-empty-state]').hidden = rows.length > 0;
     $$('[data-star]').forEach(button => button.addEventListener('click', () => toggleStar(button.dataset.star)));
     renderShortlist();
   }
 
   function roleCard(row, index) {
-    return `<article class="role-card"><span class="role-index">${String(index + 1).padStart(2, '0')}</span><div><div class="role-title">${esc(row.title)}</div><div class="role-employer">${esc(row.employer)}</div><span class="role-track">${esc(roleTrack(row))}</span><span class="role-level">${esc(experienceLevel(row))}</span></div><div class="role-location"><span>Location${isDallasArea(row.location) ? ' · DFW' : ''}</span>${esc(displayLocation(row))}</div><div class="role-department"><span>Team</span>${esc(row.department || '—')}</div><div class="role-age"><strong>${esc(relativeAge(row))}</strong><span>${formatShortDate(row.first_seen)}</span></div><div class="role-actions"><a class="apply-link" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open application">↗</a><button class="star-button ${isSaved(row.posting_id) ? 'saved' : ''}" data-star="${esc(row.posting_id)}" aria-label="${isSaved(row.posting_id) ? 'Remove from shortlist' : 'Save to shortlist'}">★</button></div></article>`;
+    const track = roleTrack(row); const level = experienceLevel(row); const location = displayLocation(row); const team = row.department || track; const timingLabel = row.posted_date ? 'Posted' : 'First seen'; const timing = formatShortDate(row.posted_date || row.first_seen);
+    return `<article class="role-card"><span class="role-index">${String(index + 1).padStart(2, '0')}</span><div class="role-main"><div class="role-title-row"><div class="role-title">${esc(row.title)}</div>${isDallasArea(row.location) ? '<span class="dfw-badge">DFW</span>' : ''}</div><div class="role-employer">${esc(row.employer)}</div><div class="role-badges"><span class="role-track">${esc(track)}</span><span class="role-level">${esc(level)}</span></div><div class="role-details"><span><b>Location</b>${esc(location)}</span><span><b>Team</b>${esc(team)}</span><span><b>${timingLabel}</b>${esc(timing)}</span></div></div><div class="role-age"><strong>${esc(relativeAge(row))}</strong><span>First seen ${formatShortDate(row.first_seen)}</span></div><div class="role-actions"><a class="apply-link" href="${esc(row.url)}" target="_blank" rel="noopener noreferrer" aria-label="Open application">Open <span>↗</span></a><button class="star-button ${isSaved(row.posting_id) ? 'saved' : ''}" data-star="${esc(row.posting_id)}" aria-label="${isSaved(row.posting_id) ? 'Remove from shortlist' : 'Save to shortlist'}">★</button></div></article>`;
   }
 
   function toggleStar(id) { const values = getShortlist(); const next = values.includes(id) ? values.filter(value => value !== id) : [...values, id]; setShortlist(next); renderBrowse(); }
@@ -209,6 +252,34 @@
     const employerCounts = groupCount(open, 'employer'); const locationCounts = groupCount(open.map(row => ({ ...row, location: displayLocation(row) })), 'location');
     $('[data-chart="new"]').innerHTML = barChart(newByDate); $('[data-chart="removed"]').innerHTML = barChart(removedByDate, { height: 150 }); $('[data-chart="employers"]').innerHTML = horizontalBars(employerCounts); $('[data-chart="locations"]').innerHTML = horizontalBars(locationCounts); $('[data-chart="days"]').innerHTML = donutChart(knownDurations.length ? Math.min(1, median(knownDurations) / 14) : 0, 'Median days open');
     $('[data-insight="new-total"]').textContent = newRows.length; $('[data-insight="removed-total"]').textContent = removedRows.length; $('[data-insight="top-employer"]').textContent = Object.entries(employerCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '—'; $('[data-insight="median-days"]').textContent = knownDurations.length ? `${Math.round(median(knownDurations))}d` : '—'; $('[data-insight="seven-day"]').textContent = qualified.length ? `${Math.round(withinSeven.length / qualified.length * 100)}%` : '—'; $('[data-insight="seven-count"]').textContent = withinSeven.length; $('[data-insight="seven-total"]').textContent = qualified.length; $('[data-insight="top-location"]').textContent = Object.entries(locationCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '—';
+  }
+
+  function initCareerFit() {
+    const form = $('[data-career-quiz]');
+    if (!form || form.dataset.ready) return;
+    form.dataset.ready = 'true';
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const answers = $$('fieldset', form).map(question => $('input:checked', question)?.value || '');
+      const status = $('[data-quiz-status]');
+      if (answers.some(answer => !answer)) {
+        status.textContent = 'Answer all 12 questions for a complete read.';
+        status.classList.add('is-error');
+        return;
+      }
+      status.textContent = 'Your read is ready.';
+      status.classList.remove('is-error');
+      const scores = Object.keys(careerTracks).reduce((result, key) => { result[key] = 0; return result; }, {});
+      answers.forEach(answer => answer.split(',').forEach(track => { if (scores[track] !== undefined) scores[track] += 1; }));
+      const ranked = Object.entries(scores).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+      renderQuizResults(ranked, answers.length);
+    });
+  }
+
+  function renderQuizResults(ranked, answerCount) {
+    const results = $('[data-quiz-results]'); const [primaryKey, primaryScore] = ranked[0]; const [secondaryKey, secondaryScore] = ranked[1]; const primary = careerTracks[primaryKey]; const secondary = careerTracks[secondaryKey];
+    const scoreRows = ranked.slice(0, 3).map(([key, score], index) => { const track = careerTracks[key]; return `<div class="score-row"><span>${index + 1}</span><div><strong>${esc(track.short)}</strong><div class="score-track"><i style="width:${Math.max(16, score / answerCount * 100)}%"></i></div></div><b>${score}/${answerCount}</b></div>`; }).join('');
+    results.innerHTML = `<div class="results-kicker"><span class="results-orbit">✦</span><p class="eyebrow">Your strongest lane</p></div><h2>${esc(primary.name)}</h2><p class="results-lead">${esc(primary.description)}</p><div class="results-block"><span class="results-label">The signal in your answers</span><div class="score-list">${scoreRows}</div></div><div class="secondary-result"><p class="eyebrow">Also worth exploring</p><h3>${esc(secondary.name)}</h3><p>${esc(secondary.description)}</p></div><div class="role-suggestions"><span class="results-label">Search terms to try</span><div class="suggestion-chips">${[...primary.roles, ...secondary.roles.slice(0, 2)].map(role => `<span>${esc(role)}</span>`).join('')}</div></div><div class="quiz-result-actions"><span>${primaryScore} strongest signals · ${secondaryScore} supporting signals</span><a class="quiet-button" href="browse.html">Browse the board <span>↗</span></a></div>`;
   }
 
   if (page === 'browse') initBrowse();

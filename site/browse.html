@@ -12,20 +12,20 @@
   <div class="noise"></div>
   <header class="site-header shell">
     <a class="brand" href="index.html" aria-label="Job Watcher home"><span class="brand-mark"><span></span><span></span><span></span></span><span>Job <em>Watcher</em></span></a>
-    <nav class="main-nav" aria-label="Primary navigation"><a href="index.html">Today</a><a class="active" href="browse.html">Browse <span class="nav-count" data-open-count>18</span></a><a href="market.html">Market</a></nav>
+    <nav class="main-nav" aria-label="Primary navigation"><a href="index.html">Today</a><a class="active" href="browse.html">Browse <span class="nav-count" data-open-count>18</span></a><a href="market.html">Market</a><a href="career-fit.html">Career fit</a></nav>
     <div class="header-meta"><span class="live-dot"></span><span data-run-label>Updating daily</span></div>
   </header>
 
   <main class="shell page-space">
     <section class="page-intro browse-intro">
       <div><p class="eyebrow"><span class="eyebrow-line"></span>The open board</p><h1>Find the role<br><span>worth your time.</span></h1></div>
-      <p class="page-intro-copy">Browse the live set, save the ones that stay with you, and let the rest fall away. Your shortlist lives in this browser.</p>
+      <p class="page-intro-copy">Compare the live set at a glance, save the roles that stay with you, and open the employer page only when you are ready to go deeper.</p>
     </section>
 
     <section class="browse-toolbar panel">
       <div class="toolbar-top">
         <div class="segmented" role="group" aria-label="Posting scope"><button class="segment active" data-scope="role">In my lane</button><button class="segment" data-scope="all">All postings</button></div>
-        <div class="toolbar-summary"><strong data-result-count>0</strong> open roles <span class="toolbar-divider"></span><span class="saved-dot"></span><strong data-shortlist-count>0</strong> saved</div>
+        <div class="toolbar-summary"><strong data-result-count>0</strong> open roles <span class="toolbar-divider"></span><span class="saved-dot"></span><strong data-shortlist-count>0</strong> saved <button class="reset-button" type="button" data-reset-filters>Reset filters</button></div>
       </div>
       <div class="filter-row">
         <label class="search-field"><span>⌕</span><input type="search" data-search placeholder="Search titles or employers"></label>
@@ -41,14 +41,17 @@
       <div class="browse-main">
         <div class="browse-heading"><div><p class="eyebrow">Your current read</p><h2 data-browse-heading>Roles in your lane</h2></div><span class="updated-stamp">Last run <strong data-last-run-short>Nov 15</strong></span></div>
         <div class="role-list" data-role-list></div>
+        <button class="load-more-button" type="button" data-load-more hidden>Show more roles <span>↓</span></button>
+        <p class="browse-limit-note" data-visible-count></p>
         <div class="empty-state" data-empty-state hidden><span>◌</span><h3>Nothing fits that filter yet.</h3><p>Try a wider search or switch to all postings.</p></div>
       </div>
       <aside class="browse-side">
-        <div class="panel shortlist-panel"><div class="section-heading"><div><p class="eyebrow">Keep an eye on</p><h2>Your shortlist</h2></div><span class="star-big">★</span></div><p class="panel-intro">Stars stay in this browser after you leave. Use them for the conversations worth having.</p><div class="shortlist-preview" data-shortlist-preview></div><a class="quiet-button" href="#" data-show-shortlist>Show saved roles <span>→</span></a></div>
-        <div class="aside-note"><span class="note-icon">⌁</span><p><strong>Small signal, big picture.</strong><br>Tags show the finance track and an estimated experience level. Location choices are limited to places with open roles in the current view, with duplicate city formats merged.</p></div>
+        <div class="panel shortlist-panel"><div class="section-heading"><div><p class="eyebrow">Keep an eye on</p><h2>Your shortlist</h2></div><span class="star-big">★</span></div><p class="panel-intro">Stars stay in this browser after you leave. Use them for the conversations worth having.</p><div class="shortlist-preview" data-shortlist-preview></div><a class="quiet-button" href="#" data-show-shortlist>Show saved roles <span>→</span></a><a class="quiet-button quiet-button-secondary" href="career-fit.html">Take the career fit quiz <span>→</span></a></div>
+        <div class="aside-note"><span class="note-icon">⌁</span><p><strong>Small signal, big picture.</strong><br>Cards show the fields available from each employer board: role, track, estimated level, location, team, dates, and a direct application link. Salary and full descriptions remain on the employer page.</p></div>
       </aside>
     </section>
   </main>
+  <section class="quote-panel browse-quote shell"><div class="quote-mark">“</div><p data-career-quote>Good work is not only about finding a title. It is about finding a direction you can keep choosing.</p><span data-career-quote-source>CAREER FIELD NOTE</span></section>
   <footer class="site-footer shell"><span>JOB WATCHER</span><span>Browse what is open.</span><span data-footer-date>Updated daily · UTC</span></footer>
   <script src="demo-data.js"></script>
   <script src="app.js"></script>

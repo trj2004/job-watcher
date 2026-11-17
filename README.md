@@ -11,6 +11,7 @@ The first checkpoint includes:
 - `site/index.html` — Today page
 - `site/browse.html` — searchable open-posting browser with stars saved in the browser
 - `site/market.html` — history-driven market report with six chart sections
+- `site/career-fit.html` — 12-question reflection quiz that maps answers to exploratory career lanes
 - a shared visual system, responsive layout, installable manifest, and offline service worker
 - a demo dataset at the required fixed paths so the site is useful before the first GitHub Actions run
 
@@ -32,6 +33,8 @@ The initial role family is deliberately broad:
 The current title rule marks a posting as `in_role` when its title contains one of the finance-track phrases in `jobwatcher/title_rules.py`. The browse page still supports viewing every posting returned by the watched employers, so the watchlist can remain exploratory while the primary category is refined.
 
 Browse also derives an estimated experience label from common title language such as intern, analyst, associate, manager, senior, and vice president. Location filters normalize common ATS variants and are populated from the current open-posting view, so empty or duplicate choices do not clutter the menu.
+
+The Browse cards surface the fields available in the feed before the application link: track, estimated experience, DFW signal, location, team, posted date when supplied, and first-seen age. Long result sets are shown in readable batches with a load-more control. The Career Fit page is a lightweight reflection tool, not a hiring assessment; it suggests adjacent paths such as banking, wealth advice, credit, investments, real estate, and finance strategy.
 
 The active source set includes Texas Capital Bank, Frost Bank, Ares Management, Bain Capital, Blackstone, JLL, State Street, Capital One, LPL Financial, JPMorgan Chase, Newmark, Edward Jones, Morgan Stanley, Climate First Bank, and Invesco. Sources are read from public ATS JSON endpoints; the project does not require employer logins and does not scrape HTML job pages. Old source snapshots remain in git history for traceability but are excluded from the current history build when they are no longer configured.
 

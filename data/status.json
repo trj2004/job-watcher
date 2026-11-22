@@ -1,10 +1,10 @@
 {
-  "run_time": "2026-11-21T19:36:30.137046Z",
+  "run_time": "2026-11-22T19:54:21.938021Z",
   "first_run_date": "2026-11-15",
-  "days_with_success": 7,
-  "open": 10198,
-  "new_today": 107,
-  "removed_today": 164,
+  "days_with_success": 8,
+  "open": 10206,
+  "new_today": 4,
+  "removed_today": 68,
   "sources": [
     {
       "name": "Texas Capital Bank",
@@ -39,7 +39,7 @@
     {
       "name": "State Street",
       "ok": true,
-      "count": 1165
+      "count": 1150
     },
     {
       "name": "Capital One",
@@ -49,7 +49,7 @@
     {
       "name": "LPL Financial",
       "ok": true,
-      "count": 323
+      "count": 321
     },
     {
       "name": "JPMorgan Chase",
@@ -59,7 +59,7 @@
     {
       "name": "Newmark",
       "ok": true,
-      "count": 210
+      "count": 209
     },
     {
       "name": "Edward Jones",
@@ -69,7 +69,7 @@
     {
       "name": "Morgan Stanley",
       "ok": true,
-      "count": 373
+      "count": 399
     },
     {
       "name": "Climate First Bank",

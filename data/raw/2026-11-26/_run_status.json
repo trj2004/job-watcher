@@ -1,0 +1,65 @@
+{
+  "run_time": "2026-11-26T21:47:56.816165Z",
+  "sources": {
+    "Texas Capital Bank": {
+      "ok": true,
+      "count": 110
+    },
+    "Frost Bank": {
+      "ok": true,
+      "count": 183
+    },
+    "Ares Management": {
+      "ok": true,
+      "count": 225
+    },
+    "Bain Capital": {
+      "ok": true,
+      "count": 35
+    },
+    "Blackstone": {
+      "ok": true,
+      "count": 136
+    },
+    "JLL": {
+      "ok": true,
+      "count": 1600
+    },
+    "State Street": {
+      "ok": true,
+      "count": 1153
+    },
+    "Capital One": {
+      "ok": true,
+      "count": 1600
+    },
+    "LPL Financial": {
+      "ok": true,
+      "count": 325
+    },
+    "JPMorgan Chase": {
+      "ok": true,
+      "count": 4000
+    },
+    "Newmark": {
+      "ok": true,
+      "count": 215
+    },
+    "Edward Jones": {
+      "ok": true,
+      "count": 10
+    },
+    "Morgan Stanley": {
+      "ok": true,
+      "count": 400
+    },
+    "Climate First Bank": {
+      "ok": true,
+      "count": 27
+    },
+    "Invesco": {
+      "ok": true,
+      "count": 208
+    }
+  }
+}

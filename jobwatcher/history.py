@@ -180,13 +180,14 @@ def build_history(
     output_status: str | Path,
     sources: list[Mapping[str, Any]] | None = None,
     run_time: str | None = None,
+    end_date: str | None = None,
 ) -> tuple[list[dict[str, str]], dict[str, Any]]:
     """Rebuild history and status from all available daily raw files."""
 
     root = Path(raw_root)
     source_configs = {str(item["name"]): item for item in (sources or [])}
     files: list[tuple[str, str, Path]] = []
-    for day_dir in sorted(path for path in root.glob("????-??-??") if path.is_dir()):
+    for day_dir in sorted(path for path in root.glob("????-??-??") if path.is_dir() and (not end_date or path.name <= end_date)):
         for raw_path in sorted(day_dir.glob("*.json.gz")):
             source = raw_path.name.removesuffix(".json.gz")
             if source_configs and source not in source_configs:

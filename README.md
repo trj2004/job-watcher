@@ -1,5 +1,7 @@
 # Job Watcher
 
+[![Tests](https://github.com/trj2004/job-watcher/actions/workflows/tests.yml/badge.svg)](https://github.com/trj2004/job-watcher/actions/workflows/tests.yml)
+
 An installable daily job-market watchlist for finance, banking, lending, wealth management, real estate finance, and mission-driven financial roles.
 
 This project is intentionally separate from the `fda-python` course repository. The site is designed to feel like a calm daily briefing: useful enough to open every morning, polished enough to publish, and flexible enough to follow several career directions while the watchlist evolves.
@@ -38,6 +40,28 @@ The Browse cards surface the fields available in the feed before the application
 
 The active source set includes Texas Capital Bank, Frost Bank, Ares Management, Bain Capital, Blackstone, JLL, State Street, Capital One, LPL Financial, JPMorgan Chase, Newmark, Edward Jones, Morgan Stanley, Climate First Bank, and Invesco. Sources are read from public ATS JSON endpoints; the project does not require employer logins and does not scrape HTML job pages. Old source snapshots remain in git history for traceability but are excluded from the current history build when they are no longer configured.
 
+## Source adapters
+
+| Employer | Applicant tracking system |
+| --- | --- |
+| Texas Capital Bank | Workday |
+| Frost Bank | Workday |
+| Ares Management | Workday |
+| Bain Capital | Workday |
+| Blackstone | Workday |
+| JLL | Workday |
+| State Street | Workday |
+| Capital One | Workday |
+| LPL Financial | Workday |
+| JPMorgan Chase | Oracle Recruiting |
+| Newmark | Oracle Recruiting |
+| Edward Jones | MCloud |
+| Morgan Stanley | Eightfold |
+| Climate First Bank | Greenhouse |
+| Invesco | Workday |
+
+The title rule is implemented in `jobwatcher/title_rules.py`: a posting is marked `in_role=true` when its title matches a finance-track phrase covering commercial and community banking, lending, credit, wealth, financial planning, investments, portfolio work, asset management, risk, treasury, real-estate finance, property management, private banking, trust, client service, affordable-housing finance, program finance, or financial services. Every source is requested as public JSON; no login and no HTML scraping are used.
+
 ## Local preview
 
 From this repository root:
@@ -75,3 +99,35 @@ uv run pytest
 GitHub Actions will run the tests on every push and the daily pipeline on a UTC schedule. The assignment dates and first-run deadline should be added from Blackboard before the repository is submitted.
 
 The Pages workflow publishes the `site/` folder. The pipeline keeps the required source-of-truth files in `data/` and synchronizes deployment copies to `site/data/` before committing.
+
+## Repository map
+
+- `.gitignore` — excludes local caches and generated development files.
+- `.github/workflows/daily.yml` — runs the source pulls, history build, status update, daily issue, and data commit on a UTC schedule.
+- `.github/workflows/pages.yml` — publishes `site/` to GitHub Pages.
+- `.github/workflows/tests.yml` — runs pytest on pushes and pull requests.
+- `.github/workflows/issue-backfill.yml` — maintenance workflow that restores missing daily issues from committed raw data.
+- `pyproject.toml` and `uv.lock` — Python project metadata, dependencies, and locked environment.
+- `sources/sources.json` — the 15 employer ATS endpoints and field mappings.
+- `jobwatcher/history.py` — normalizes source records and rebuilds deterministic history/status files.
+- `jobwatcher/title_rules.py` — title-based in-role classification.
+- `scripts/run_pipeline.py` — fetches every source, writes compressed raw files, rebuilds data, and invokes issue updates.
+- `scripts/build_history.py` — command-line history rebuild from raw files.
+- `scripts/update_issue.py` — creates/updates daily issues, closes older ones, and splits large lists into comments.
+- `data/raw/<date>/` — compressed JSON source responses and per-source run status.
+- `data/history.csv` — canonical one-row-per-posting history.
+- `data/status.json` — latest run time, counts, source health, and successful-day count.
+- `tests/test_history.py` — common-column, normalization, first-seen, last-seen, removal, and source-history tests.
+- `tests/test_title_rules.py` — in-role and unrelated-title tests.
+- `site/index.html` — Today page.
+- `site/browse.html` — open-role browser, filters, direct application links, and shortlist.
+- `site/market.html` — six-section history-driven market report.
+- `site/career-fit.html` — exploratory 12-question career-fit quiz.
+- `site/app.js` — browser-side data loading, calculations, rendering, filters, charts, shortlist, and quiz logic.
+- `site/styles.css` — shared visual system and responsive layout.
+- `site/demo-data.js` — clearly labeled fallback seed data for the first local preview.
+- `site/data/history.csv` and `site/data/status.json` — deployment copies of the canonical data files.
+- `site/manifest.json` — installable web-app metadata and icons.
+- `site/icon-192.svg` and `site/icon-512.svg` — Job Watcher app icons.
+- `site/sw.js` — offline shell/cache behavior with network-first data loading.
+- `README.md` — project overview, source map, commands, and repository documentation.

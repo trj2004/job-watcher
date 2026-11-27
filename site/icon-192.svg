@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-labelledby="title">
+  <title>Job Watcher</title>
+  <rect width="192" height="192" rx="42" fill="#07111f"/>
+  <circle cx="96" cy="96" r="62" fill="none" stroke="#8ee6c1" stroke-opacity=".22" stroke-width="2"/>
+  <circle cx="96" cy="96" r="43" fill="none" stroke="#8ee6c1" stroke-opacity=".45" stroke-width="2"/>
+  <circle cx="96" cy="96" r="25" fill="#8ee6c1"/>
+  <path d="M68 125V67h13v58H68Zm21 0V82h13v43H89Zm21 0V55h13v70h-13Z" fill="#07111f"/>
+</svg>

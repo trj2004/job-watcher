@@ -109,6 +109,8 @@ The Pages workflow publishes the `site/` folder. The pipeline keeps the required
 - `.github/workflows/issue-backfill.yml` — maintenance workflow that restores missing daily issues from committed raw data.
 - `pyproject.toml` and `uv.lock` — Python project metadata, dependencies, and locked environment.
 - `sources/sources.json` — the 15 employer ATS endpoints and field mappings.
+- `data/raw/.gitkeep` — keeps the raw-data directory present before the first run.
+- `jobwatcher/__init__.py` — package marker for the Python modules.
 - `jobwatcher/history.py` — normalizes source records and rebuilds deterministic history/status files.
 - `jobwatcher/title_rules.py` — title-based in-role classification.
 - `scripts/run_pipeline.py` — fetches every source, writes compressed raw files, rebuilds data, and invokes issue updates.
